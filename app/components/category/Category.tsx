@@ -5,7 +5,7 @@ import Container from '../shared/Container'
 export default function Category() {
   const categories = [
     { id: 1, name: 'Fruits', image: 'https://freebw.com/templates/oragnive-v1/images/bg-item-02.jpg', items: 10 },
-    { id: 2, name: 'Vegetables', image: 'https://freebw.com/templates/oragnive-v1/images/bg-item-02.jpg', items: 15 },
+    { id: 2, name: 'Vegetables', image: 'https://freebw.com/templates/oragnive-v1/images/bg-item-01.jpg', items: 15 },
     { id: 3, name: 'Fruit Juice', image: 'https://freebw.com/templates/oragnive-v1/images/bg-item-03.jpg', items: 20 },
     { id: 4, name: 'Dried', image: 'https://freebw.com/templates/oragnive-v1/images/bg-item-04.jpg', items: 25 },
   ]

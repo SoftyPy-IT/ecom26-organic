@@ -12,7 +12,7 @@ const rajdhani = Rajdhani({
 
 
 export const metadata: Metadata = {
-  title: 'Organic Food',
+  title: 'Organic Fresh',
   description: 'An e-commerce website for organic food products.',
 };
 

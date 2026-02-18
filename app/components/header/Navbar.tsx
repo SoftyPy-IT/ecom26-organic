@@ -1,15 +1,47 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { navItems } from './navitems';
+import { usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  const isHome = pathname === "/"
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  // Handle scroll
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+
+  // Determine navbar classes
+  const navbarCSS = isHome
+    ? isOpen
+      ? "sticky bg-[#D2CBF1]"
+      : scrolled
+        ? "sticky bg-white text-black shadow-md"
+        : isMobile ? "sticky bg-white text-black shadow-md" : "fixed bg-transparent "
+    : isMobile ? "sticky bg-white text-black shadow-md" : "sticky bg-white text-black shadow-md"
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-transparent transition-all">
+    <header className={`top-0 left-0 w-full z-50 transition-all duration-300 ${navbarCSS}`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="text-2xl font-bold tracking-wide">
           🌿 OrganicFresh
@@ -22,7 +54,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               target={item.target}
-              className="text-sm font-bold uppercase transition hover:text-green-400"
+              className={`text-sm font-bold uppercase transition hover:text-green-400 ${pathname === item.href ? 'text-green-400' : ''}`}
             >
               {item.name}
             </Link>
