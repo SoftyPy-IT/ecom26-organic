@@ -11,14 +11,14 @@ export default function Category() {
   ]
 
   return (
-    <Container className="py-10 px-2 xl:px-0">
+    <div className='px-2 2xl:px-0'>
       <SectionHeader title="Categories" subtitle="Explore our categories" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  mt-8">
         {categories.map((category) => (
           <div
             key={category.id}
-            className="relative w-full h-[200px] rounded-lg overflow-hidden group cursor-pointer"
+            className="relative w-full h-full aspect-square overflow-hidden group cursor-pointer"
           >
             {/* Category Image */}
             <Image
@@ -33,14 +33,14 @@ export default function Category() {
 
             {/* Category Name and Items */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white pointer-events-none">
-              <h3 className="text-2xl font-bold">{category.name}</h3>
-              <p className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {category.items} items
+              <h3 className="text-4xl font-bold">{category.name}</h3>
+              <p className="text-xl font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {category.items} Items
               </p>
             </div>
           </div>
         ))}
       </div>
-    </Container>
+    </div>
   )
 }

@@ -9,7 +9,7 @@ interface TestimonialCardProps {
 
 export default function TestimonialCard({ image, name, message, rating }: TestimonialCardProps) {
   return (
-    <div className="shadow-md rounded-xl p-6 flex flex-col items-center text-center space-y-3 hover:shadow-lg transition">
+    <div className="p-6 flex flex-col items-center text-center space-y-3">
 
       {/* User Image */}
       <div className="relative w-16 h-16">

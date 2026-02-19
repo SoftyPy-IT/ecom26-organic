@@ -32,13 +32,13 @@ export default function BlogCard({ blog }: BlogCardProps) {
       <div className="flex flex-col md:flex-row gap-4 py-4">
 
         {/* Author / Date */}
-        <div className="flex flex-col items-center justify-center gap-2 md:w-32 bg-[#81b03f] text-white">
-          {author && (
+        <div className="flex flex-col items-center justify-center gap-2 bg-[#81b03f] text-white p-2">
+          {date && (
             <p className="text-xl font-semibold uppercase tracking-wide">
               {date}
             </p>
           )}
-          {date && (
+          {author && (
             <p className="text-sm">{author}</p>
           )}
         </div>

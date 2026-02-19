@@ -46,7 +46,7 @@ export default function Testimonial() {
         <Swiper
           modules={[Autoplay, Pagination]}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
-          loop={testimonialData.length > 1} // only loop if more than 1
+          loop={testimonialData.length > 1} 
           pagination={{ clickable: true }}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           spaceBetween={30}
