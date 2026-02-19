@@ -8,7 +8,7 @@ interface ProductCardsProps {
   price: number;
 }
 
-export default function ProductCards({
+export default function ProductCards_1({
   title,
   image,
   price,
@@ -19,7 +19,7 @@ export default function ProductCards({
       <div className="flex flex-col items-center space-y-3">
 
         {/* Image */}
-        <div className="relative w-full aspect-square overflow-hidden rounded-md">
+        <div className="relative w-full h-full aspect-square overflow-hidden">
           <Image
             src={image}
             alt={title}
@@ -41,7 +41,7 @@ export default function ProductCards({
 
           {/* Buttons (Show on hover) */}
           <div className="absolute flex gap-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-          <Link href={`/product`}>
+          <Link href={`/shop/1`}>
             <button className="p-2 bg-gray-100 rounded-full hover:bg-[#81b03f] hover:text-white transition">
               <Search size={18} />
             </button>

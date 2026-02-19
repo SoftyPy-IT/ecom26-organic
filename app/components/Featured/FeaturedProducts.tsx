@@ -1,9 +1,8 @@
 import SectionHeader from '../shared/SectionHeader'
 import Container from '../shared/Container'
-import Image from 'next/image'
-import ProductCards from '../cards/ProductCards'
+import ProductCards_1 from '../cards/ProductCards_1'
 
-const item = [
+export const featuredProducts = [
   {
     id:1,
     title: "Red pumpkin",
@@ -52,6 +51,30 @@ const item = [
     image: "https://freebw.com/templates/oragnive-v1/images/product-08.jpg",
     price: 12,
   },
+  {
+    id:9,
+    title: "Tomato",
+    image: "https://freebw.com/templates/oragnive-v1/images/product-19.jpg",
+    price: 12,
+  },
+  {
+    id:10,
+    title: "Tomato",
+    image: "https://freebw.com/templates/oragnive-v1/images/product-20.jpg",
+    price: 12,
+  },
+  {
+    id:11,
+    title: "Tomato",
+    image: "https://freebw.com/templates/oragnive-v1/images/product-21.jpg",
+    price: 12,
+  },
+  {
+    id:12,
+    title: "Tomato",
+    image: "https://freebw.com/templates/oragnive-v1/images/product-22.jpg",
+    price: 12,
+  },
 
 ]
 
@@ -61,8 +84,8 @@ export default function FeaturedProducts() {
     <Container className='px-2 2xl:px-0'>
       <SectionHeader title="Featured Products" subtitle="Check out our featured products" />
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-10'>
-        {item.map((item) => (
-          <ProductCards key={item.id} title={item.title} image={item.image} price={item.price} />
+        {featuredProducts.map((item) => (
+          <ProductCards_1 key={item.id} title={item.title} image={item.image} price={item.price} />
         ))}
       </div>
     </Container>

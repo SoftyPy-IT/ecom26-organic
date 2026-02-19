@@ -34,7 +34,7 @@ export default function Navbar() {
   // Determine navbar classes
   const navbarCSS = isHome
     ? isOpen
-      ? "sticky bg-[#D2CBF1]"
+      ? "sticky bg-white"
       : scrolled
         ? "sticky bg-white text-black shadow-md"
         : isMobile ? "sticky bg-white text-black shadow-md" : "fixed bg-transparent "
@@ -54,7 +54,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               target={item.target}
-              className={`text-sm font-bold uppercase transition hover:text-green-400 ${pathname === item.href ? 'text-green-400' : ''}`}
+              className={`text-sm font-bold uppercase transition hover:text-[#81b03f] ${pathname === item.href ? 'text-[#81b03f]' : ''}`}
             >
               {item.name}
             </Link>

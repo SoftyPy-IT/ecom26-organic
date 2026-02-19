@@ -31,12 +31,12 @@ export default function TopFooter() {
               type="email"
               required
               placeholder="Enter your email address"
-              className="flex-1 px-4 py-3  border bg-white border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none text-sm"
+              className="flex-1 px-4 py-3  border bg-white border-[#81b03f] focus:ring-2 focus:ring-[#81b03f] focus:border-[#81b03f] outline-none text-sm"
             />
 
             <button
               type="submit"
-              className="px-6 py-3 bg-primary bg-[#81b03f] text-white font-medium hover:opacity-90 transition duration-200"
+              className="px-6 py-3 bg-[#81b03f] text-white font-medium hover:opacity-90 transition duration-200"
             >
               Subscribe
             </button>

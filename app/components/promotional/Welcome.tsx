@@ -36,7 +36,7 @@ export default function Welcome() {
         {advantages.slice(0, 2).map((item, idx) => (
           <div key={idx} className="flex flex-col items-center text-center max-w-xs mx-auto sm:mx-0">
             {/* Hover Effect Wrapper */}
-            <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-green-400 hover:scale-110 transition-transform duration-300">
+            <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-[#81b03f] hover:scale-110 transition-transform duration-300">
               <Image src={item.image} alt={item.title} width={100} height={100} />
             </div>
             <h3 className="text-xl font-bold mt-4">{item.title}</h3>
@@ -49,7 +49,7 @@ export default function Welcome() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
         {/* Third advantage */}
         <div className="flex flex-col justify-center items-center text-center max-w-xs mx-auto md:mx-0">
-          <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-green-400 hover:scale-110 transition-transform duration-300">
+          <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-[#81b03f] hover:scale-110 transition-transform duration-300">
             <Image src={advantages[2].image} alt={advantages[2].title} width={100} height={100} />
           </div>
           <h3 className="text-xl font-bold mt-4">{advantages[2].title}</h3>
@@ -69,7 +69,7 @@ export default function Welcome() {
 
         {/* Fourth advantage */}
         <div className="flex flex-col justify-center items-center text-center max-w-xs mx-auto md:mx-0">
-          <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-green-400 hover:scale-110 transition-transform duration-300">
+          <div className="p-4 rounded-full bg-white shadow-md hover:shadow-lg hover:shadow-[#81b03f] hover:scale-110 transition-transform duration-300">
             <Image src={advantages[3].image} alt={advantages[3].title} width={100} height={100} />
           </div>
           <h3 className="text-xl font-bold mt-4">{advantages[3].title}</h3>

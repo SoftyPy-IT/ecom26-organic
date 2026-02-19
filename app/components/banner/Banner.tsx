@@ -49,13 +49,13 @@ export default function Banner() {
               <div className="relative z-10 mx-auto h-screen flex flex-col items-center justify-center gap-6 px-6 py-16 md:flex-row md:gap-12 md:py-24">
                 {/* Left Text */}
                 <div className="max-w-xl">
-                  <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-green-600">
+                  <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-[#81b03f]">
                     100% Natural & Fresh
                   </p>
 
                   <h1 className="mb-6 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
                     {slide.title}
-                    <span className="block text-green-600">{slide.subtitle}</span>
+                    <span className="block text-[#81b03f]">{slide.subtitle}</span>
                   </h1>
 
                   <p className="mb-8">{slide.description}</p>
@@ -63,14 +63,14 @@ export default function Banner() {
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href="/shop"
-                      className="rounded-full bg-green-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700"
+                      className="rounded-full hover:shadow-lg bg-[#81b03f] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#81b03f]"
                     >
                       Shop Now
                     </Link>
 
                     <Link
                       href="/about"
-                      className="rounded-full bg-gray-300 px-6 py-3 text-sm font-semibold text-gray-800 transition hover:bg-green-100 hover:text-green-600"
+                      className="rounded-full bg-gray-300 px-6 py-3 text-sm font-semibold transition hover:bg-[#81b03f] hover:text-white"
                     >
                       Learn More
                     </Link>

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import SectionHeader from '../shared/SectionHeader'
 import Container from '../shared/Container'
+import Link from 'next/link'
 
 export default function Category() {
   const categories = [
@@ -16,8 +17,9 @@ export default function Category() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  mt-8">
         {categories.map((category) => (
-          <div
+          <Link
             key={category.id}
+            href={`/shop?category=${category.name}`}
             className="relative w-full h-full aspect-square overflow-hidden group cursor-pointer"
           >
             {/* Category Image */}
@@ -38,7 +40,7 @@ export default function Category() {
                 {category.items} Items
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

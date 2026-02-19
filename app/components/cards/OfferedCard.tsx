@@ -9,7 +9,7 @@ export interface Props {
 
 export default function OfferedCard({ image, title, price }: Props) {
   return (
-    <Link href="/shop">
+    <Link href={`/shop/${title}`}>
       <div className="border border-gray-200 hover:shadow-lg hover:border-[#81b03f] transition duration-300 flex flex-col  w-full">
 
         {/* Image Section */}

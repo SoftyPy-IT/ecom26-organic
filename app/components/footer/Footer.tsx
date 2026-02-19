@@ -46,22 +46,22 @@ const footerSections = [
     categories: [
       {
         label: "Fruits",
-        href: "/category/fruits",
+        href: "/shop?category=fruits",
         image: "https://freebw.com/templates/oragnive-v1/images/bg-item-02.jpg",
       },
       {
         label: "Vegetables",
-        href: "/category/vegetables",
+        href: "/shop?category=vegetables",
         image: "https://freebw.com/templates/oragnive-v1/images/bg-item-02.jpg",
       },
       {
         label: "Juice",
-        href: "/category/juice",
+        href: "/shop?category=juice",
         image: "https://freebw.com/templates/oragnive-v1/images/bg-item-03.jpg",
       },
       {
         label: "Dried",
-        href: "/category/dried",
+        href: "/shop?category=dried",
         image: "https://freebw.com/templates/oragnive-v1/images/bg-item-04.jpg",
       },
     ],
