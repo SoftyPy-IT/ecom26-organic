@@ -3,6 +3,7 @@ import { Rajdhani } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/header/Navbar';
 import Footer from './components/footer/Footer';
+import StoreProvider from './components/provider/StoreProvider';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -21,7 +22,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${rajdhani.className} antialiased`}>
         <Navbar />
-        <main className="min-h-screen flex-1">{children}</main>
+        <main className="min-h-screen flex-1">
+          <StoreProvider>
+            {children}
+          </StoreProvider>
+        </main>
         <Footer />
       </body>
     </html>

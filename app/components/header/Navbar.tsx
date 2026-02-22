@@ -102,7 +102,7 @@ export default function Navbar() {
 
       {/* sheet modal */}
       <SheetContainer
-        title="Search"
+        title="Search Here"
         position="top"
         open={isSheetOpen}
         onOpenChange={setIsSheetOpen}
@@ -113,7 +113,7 @@ export default function Navbar() {
 
       {/* card modal */}
       <SheetContainer
-        title="Cart"
+        title="Your Cart"
         position="right"
         open={isCartOpen}
         onOpenChange={setIsCartOpen}

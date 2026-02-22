@@ -10,6 +10,7 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import Image from 'next/image';
 import ItemsCountButton from '../buttons/ItemsCountButton';
 import AddToCard from '../buttons/AddToCard';
+import MagnifierImage from './MagnifierImage';
 
 interface ImageItem {
   _id: string;
@@ -61,14 +62,7 @@ export default function ViewDetails({
         >
           {images.map((img) => (
             <SwiperSlide key={img._id}>
-              <div className='relative aspect-square border border-[#81b03f]'>
-                <Image
-                  src={img.image}
-                  alt={title}
-                  fill
-                  className="w-full h-full object-contain"
-                />
-              </div>
+              <MagnifierImage src={img.image} alt={title} zoom={2.5} />
             </SwiperSlide>
           ))}
         </Swiper>
