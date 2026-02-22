@@ -6,10 +6,13 @@ import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { navItems } from './navitems';
 import { usePathname } from 'next/navigation';
 import SheetContainer from '../shared/modals/SheetContainer';
+import Cart from '../add-to-cart/Cart';
+import SearchField from '../shared/inputs/SearchField';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -68,7 +71,7 @@ export default function Navbar() {
           <button onClick={() => setIsSheetOpen(true)} className="transition hover:text-green-400">
             <Search size={20} />
           </button>
-          <button className="relative transition hover:text-green-400">
+          <button onClick={() => setIsCartOpen(true)} className="relative transition hover:text-green-400">
             <ShoppingCart size={20} />
             <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-400 text-xs ">
               2
@@ -105,26 +108,19 @@ export default function Navbar() {
         onOpenChange={setIsSheetOpen}
 
       >
-        <div className="w-full max-w-md mx-auto">
-          <input
-            type="text"
-            placeholder="Search here..."
-            className="
-      w-full
-      px-4 py-2
-      border
-      border-green-600
-      text-gray-900
-      placeholder-gray-400
-      focus:outline-none
-      focus:ring-2 focus:ring-green-400
-      focus:border-green-500
-      transition
-      duration-200
-    "
-          />
-        </div>
+        <SearchField />
+      </SheetContainer>
 
+      {/* card modal */}
+      <SheetContainer
+        title="Cart"
+        position="right"
+        open={isCartOpen}
+        onOpenChange={setIsCartOpen}
+      >
+        <div>
+          <Cart />
+        </div>
       </SheetContainer>
     </header>
   );

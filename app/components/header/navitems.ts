@@ -12,6 +12,11 @@ export const navItems: NavItem[] = [
     target: '_self',
   },
   {
+    name: 'About Us',
+    href: '/about',
+    target: '_self',
+  },
+  {
     name: 'Shop',
     href: '/shop',
     target: '_self',
@@ -22,13 +27,8 @@ export const navItems: NavItem[] = [
     target: '_self',
   },
   {
-    name: 'Farm Fresh',
-    href: '/farm-fresh',
-    target: '_self',
-  },
-  {
-    name: 'About Us',
-    href: '/about',
+    name: 'Wishlist',
+    href: '/wishlist',
     target: '_self',
   },
   {

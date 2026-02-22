@@ -16,12 +16,13 @@ export default function ReviewForm() {
         <TextInput
           type="text"
           name="name"
+          required
           placeholder="Name"
           className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
         />
 
         <MultipleSelect
-
+          required
           name="rating"
           options={[
             { value: "5", label: "5 - Excellent" },
@@ -36,6 +37,7 @@ export default function ReviewForm() {
 
         <TextArea
           name="review"
+          required
           placeholder="Review"
           className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
         />

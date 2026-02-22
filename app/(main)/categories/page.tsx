@@ -1,14 +1,15 @@
 import Container from '@/app/components/shared/Container'
-import Map from '@/app/components/shared/Map'
 import SectionHeader from '@/app/components/shared/SectionHeader'
-import ContactForm from '@/app/components/shared/forms/ContactForm'
 
 export default function page() {
   return (
     <Container className='px-2 2xl:px-0'>
-      <SectionHeader title="Leave us a message!" subtitle="Get In Touch" />
-      <ContactForm />
-      <Map />
+      <div className=''>
+        <SectionHeader title='All Categories' subtitle='Categories' />
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+
+        </div>
+      </div>
     </Container>
   )
 }

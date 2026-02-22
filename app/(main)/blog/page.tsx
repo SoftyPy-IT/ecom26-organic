@@ -3,7 +3,7 @@ import Container from "@/app/components/shared/Container";
 
 export default function page() {
   return (
-    <Container>
+    <Container className='px-2 2xl:px-0'>
       <BlogList />
     </Container>
   )
