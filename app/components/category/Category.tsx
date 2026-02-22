@@ -1,5 +1,6 @@
 import SectionHeader from '../shared/SectionHeader'
 import CategoryCard from '../cards/CategoryCard'
+import SeeMore from '../buttons/SeeMore'
 
 export default function Category() {
 
@@ -13,11 +14,12 @@ export default function Category() {
   return (
     <div className='px-2 2xl:px-0'>
       <SectionHeader title="Categories" subtitle="Explore our categories" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  mt-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         {categories.map((category) => (
           <CategoryCard key={category.id} category={category} />
         ))}
       </div>
+      <SeeMore href="/categories" title='View All Categories' />
     </div>
   )
 }

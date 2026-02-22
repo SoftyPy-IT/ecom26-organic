@@ -1,8 +1,10 @@
+import SeeMore from "../buttons/SeeMore";
 import BlogCard from "../cards/BlogCard";
 import Container from "../shared/Container";
 import SectionHeader from "../shared/SectionHeader";
 
 export type TBlog = {
+  id?: number;
   image?: string;
   title?: string;
   description?: string;
@@ -12,6 +14,7 @@ export type TBlog = {
 
 export const blogData: TBlog[] = [
   {
+    id: 1,
     title: "There are many variations of passages of Lorem Ipsum available",
     image: "https://freebw.com/templates/oragnive-v1/images/blog-01.jpg",
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -19,6 +22,7 @@ export const blogData: TBlog[] = [
     date: "2022-01-01",
   },
   {
+    id: 2,
     title: "There are many variations of passages of Lorem Ipsum available",
     image: "https://freebw.com/templates/oragnive-v1/images/blog-02.jpg",
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -37,6 +41,7 @@ export default function Blog() {
           ))}
         </div>
       </Container>
+      <SeeMore href="/blog" title='View All Blogs' />
     </section>
   )
 }

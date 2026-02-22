@@ -44,7 +44,7 @@ export default function BlogCard({ blog }: { blog: TBlog }) {
               {description}
             </p>
           )}
-          <Link href="/blog/1">
+          <Link href={`/blog/${blog.id}`}>
             <button className="text-[#81b03f] border border-[#81b03f] px-4 py-2 mt-2 flex items-center gap-2">
               Read More <ArrowRight />
             </button>

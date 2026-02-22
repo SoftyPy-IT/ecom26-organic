@@ -27,8 +27,8 @@ export default function CategoryCard({ category }: Props) {
 
         {/* Category Name and Items */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white pointer-events-none">
-          <h3 className="text-4xl font-bold">{category?.name}</h3>
-          <p className="text-xl font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <h3 className="text-2xl lg:text-4xl font-bold">{category?.name}</h3>
+          <p className="text-base lg:text-xl font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             {category?.items} Items
           </p>
         </div>

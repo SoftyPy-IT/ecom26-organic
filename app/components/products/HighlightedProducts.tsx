@@ -1,3 +1,4 @@
+import SeeMore from '../buttons/SeeMore';
 import Container from '../shared/Container';
 import OfferedProducts from './OfferedProducts'
 
@@ -127,6 +128,7 @@ export default function HighlightedProducts() {
         <OfferedProducts title1='Popular' title2='Products' subtitle='Popular Products' products={popularProducts} />
         <OfferedProducts title1='Random' title2='Products' subtitle='Random Products' products={randomProducts} />
       </div>
+      <SeeMore href="/shop" title='View All Products' />
     </Container>
   );
 }

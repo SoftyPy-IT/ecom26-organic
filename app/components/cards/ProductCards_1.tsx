@@ -42,14 +42,14 @@ export default function ProductCards_1({
           {/* Buttons (Show on hover) */}
           <div className="absolute flex gap-3 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
           <Link href={`/shop/1`}>
-            <button className="p-2 bg-gray-100 rounded-full hover:bg-[#81b03f] hover:text-white transition">
+            <button title="view" className="p-2 bg-gray-100 rounded-full hover:bg-[#81b03f] hover:text-white transition">
               <Search size={18} />
             </button>
             </Link>
-            <button className="p-2 bg-gray-100 rounded-full hover:bg-red-500 hover:text-white transition">
+            <button title="add to wishlist" className="p-2 bg-gray-100 rounded-full hover:bg-red-500 hover:text-white transition">
               <Heart size={18} />
             </button>
-            <button className="p-2 bg-gray-100 rounded-full hover:bg-[#81b03f] hover:text-white transition">
+            <button title="add to cart" className="p-2 bg-gray-100 rounded-full hover:bg-[#81b03f] hover:text-white transition">
               <ShoppingCart size={18} />
             </button>
           </div>
