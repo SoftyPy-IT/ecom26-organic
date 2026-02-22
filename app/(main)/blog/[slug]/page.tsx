@@ -2,6 +2,7 @@ import { TBlog } from "@/app/components/blog/Blog";
 import BlogDetails from "@/app/components/blog/BlogDetails";
 import LatestBlog from "@/app/components/blog/LatestBlog";
 import Container from "@/app/components/shared/Container";
+import CommentForm from "@/app/components/shared/forms/CommentForm";
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -23,9 +24,10 @@ export default async function page({ params }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="col-span-2">
           <BlogDetails blog={blogData} />
+          <CommentForm />
         </div>
-        <div className="col-span-1">
-          <LatestBlog title="Related Blog"/>
+        <div className="col-span-1 sticky top-20 h-fit">
+          <LatestBlog title="Related Blog" />
         </div>
       </div>
     </Container>

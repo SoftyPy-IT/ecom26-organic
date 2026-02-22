@@ -16,7 +16,7 @@ export default function SectionHeader({ title, subtitle, image, align = "center"
       </div>
       <div className='absolute'>
         <p className={`text-${color} italic text-lg font-bold mb-2`}>{subtitle}</p>
-        <h2 className="text-4xl font-bold">{title}</h2>
+        <h2 className="text-4xl font-bold uppercase">{title}</h2>
       </div>
     </div>
   );

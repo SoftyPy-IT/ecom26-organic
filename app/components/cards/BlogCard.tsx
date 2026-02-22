@@ -22,7 +22,7 @@ export default function BlogCard({ blog }: { blog: TBlog }) {
       </div>
 
       {/* Blog Content */}
-      <div className="flex flex-col md:flex-row gap-4 py-4">
+      <div className="flex flex-col md:flex-row gap-4">
 
         {/* Author / Date */}
         <div className="flex flex-col items-center justify-center gap-2 bg-[#81b03f] text-white p-2">
@@ -38,7 +38,7 @@ export default function BlogCard({ blog }: { blog: TBlog }) {
 
         {/* Main Content */}
         <div className="flex-1">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">{title}</h2>
+          <h2 className="text-xl py-2 md:text-2xl font-bold text-gray-800">{title}</h2>
           {description && (
             <p className="text-gray-600 text-sm md:text-base line-clamp-3">
               {description}

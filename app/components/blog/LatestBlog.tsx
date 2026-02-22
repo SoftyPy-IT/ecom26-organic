@@ -8,12 +8,12 @@ interface Props {
 
 export default function LatestBlog({ title }: Props) {
   return (
-    <div className="py-10">
-      <h2 className="text-2xl font-bold ">{title}</h2>
-      <div className="flex flex-col gap-4">
+    <div>
+      <h2 className="text-2xl font-bold border-b border-gray-200">{title}</h2>
+      <div className="flex flex-col gap-4 pt-4">
         {blogData.map((blog, idx) => (
           <Link href={`/blog/${blog.title}`} key={idx}>
-            <div className="flex items-center gap-4 border border-gray-200 transition">
+            <div className="flex items-center gap-4 border border-gray-200 transition p-2 hover:shadow-md">
               <Image
                 src={blog.image || ""}
                 alt={blog.title || ""}

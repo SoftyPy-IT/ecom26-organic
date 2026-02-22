@@ -47,7 +47,7 @@ const footerSections = [
       {
         label: "Fruits",
         href: "/shop?category=fruits",
-        image: "https://freebw.com/templates/oragnive-v1/images/bg-item-02.jpg",
+        image: "https://freebw.com/templates/oragnive-v1/images/bg-item-01.jpg",
       },
       {
         label: "Vegetables",

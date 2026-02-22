@@ -1,46 +1,48 @@
+"use client";
+
+import TextInput from "../inputs/TextInput";
+import AppForm from "./AppFrom";
+import TextArea from "../inputs/TextArea";
+import MultipleSelect from "../inputs/MultipleSelect";
+import SubmitButton from "../buttons/SubmitButton";
+
 export default function ReviewForm() {
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
   return (
-    <form className="space-y-6">
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Your Name
-        </label>
-        <input
+    <AppForm onSubmit={onSubmit}>
+      <div className="space-y-4">
+        <TextInput
           type="text"
-          className="w-full border border-[#81b03f] px-4 py-3 focus:ring-2 focus:ring-[#81b03f] outline-none"
+          name="name"
+          placeholder="Name"
+          className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
         />
-      </div>
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Rating
-        </label>
-        <select className="w-full border border-[#81b03f] px-4 py-3 focus:ring-2 focus:ring-[#81b03f] outline-none">
-          {[5, 4, 3, 2, 1].map((rate) => (
-            <option key={rate} value={rate} className='text-yellow-500'>
-              {"★".repeat(rate)}{" "}
-              {"☆".repeat(5 - rate)} ({rate})
-            </option>
-          ))}
-        </select>
-      </div>
+        <MultipleSelect
 
-      <div>
-        <label className="block text-sm font-medium mb-2">
-          Review
-        </label>
-        <textarea
-          rows={4}
-          className="w-full border border-[#81b03f] px-4 py-3 focus:ring-2 focus:ring-[#81b03f] outline-none"
+          name="rating"
+          options={[
+            { value: "5", label: "5 - Excellent" },
+            { value: "4", label: "4 - Good" },
+            { value: "3", label: "3 - Average" },
+            { value: "2", label: "2 - Poor" },
+            { value: "1", label: "1 - Very Poor" },
+          ]}
+          className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
         />
-      </div>
 
-      <button
-        type="submit"
-        className="bg-[#81b03f] text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition"
-      >
-        Submit Review
-      </button>
-    </form>
+
+        <TextArea
+          name="review"
+          placeholder="Review"
+          className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
+        />
+
+
+        <SubmitButton title="Submit Review" />
+      </div>
+    </AppForm>
   )
 }

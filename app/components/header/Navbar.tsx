@@ -5,9 +5,11 @@ import Link from 'next/link';
 import { ShoppingCart, Search, Menu, X } from 'lucide-react';
 import { navItems } from './navitems';
 import { usePathname } from 'next/navigation';
+import SheetContainer from '../shared/modals/SheetContainer';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -63,7 +65,7 @@ export default function Navbar() {
 
         {/* Right icons + mobile toggle */}
         <div className="flex items-center space-x-4">
-          <button className="transition hover:text-green-400">
+          <button onClick={() => setIsSheetOpen(true)} className="transition hover:text-green-400">
             <Search size={20} />
           </button>
           <button className="relative transition hover:text-green-400">
@@ -94,6 +96,36 @@ export default function Navbar() {
           ))}
         </div>
       )}
+
+      {/* sheet modal */}
+      <SheetContainer
+        title="Search"
+        position="top"
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
+
+      >
+        <div className="w-full max-w-md mx-auto">
+          <input
+            type="text"
+            placeholder="Search here..."
+            className="
+      w-full
+      px-4 py-2
+      border
+      border-green-600
+      text-gray-900
+      placeholder-gray-400
+      focus:outline-none
+      focus:ring-2 focus:ring-green-400
+      focus:border-green-500
+      transition
+      duration-200
+    "
+          />
+        </div>
+
+      </SheetContainer>
     </header>
   );
 }

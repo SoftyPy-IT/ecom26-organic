@@ -47,20 +47,21 @@ export default function Page() {
   return (
     <Container className="px-2 2xl:px-0 py-8">
 
-      {/* Top Filter Bar */}
-      <QueryAction
-        search={search}
-        setSearch={setSearch}
-        sort={sort}
-        setSort={setSort}
-        view={view}
-        setView={setView}
-      />
+      <div>
+        <QueryAction
+          search={search}
+          setSearch={setSearch}
+          sort={sort}
+          setSort={setSort}
+          view={view}
+          setView={setView}
+        />
+      </div>
 
       <div className="flex flex-col md:flex-row gap-4 py-4 items-start md:justify-between">
 
         {/* Sidebar */}
-        <aside className="md:w-3/12 w-full lg:col-span-3 md:sticky md:top-24 self-start">
+        <aside className="md:w-3/12 w-full lg:col-span-3 md:sticky md:top-24">
           <QueryAction range={range} setRange={setRange} />
           <CategoryItems title="Category" items={categoryItems} />
           <BestSellers title="Best Sellers" />
