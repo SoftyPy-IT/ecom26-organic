@@ -64,7 +64,7 @@ export default function Page() {
         <aside className="md:w-3/12 w-full lg:col-span-3 md:sticky md:top-24">
           <QueryAction range={range} setRange={setRange} />
           <CategoryItems title="Category" items={categoryItems} />
-          <BestSellers title="Best Sellers" />
+          <BestSellers title="Best Sales" />
         </aside>
 
         {/* Products Section */}
