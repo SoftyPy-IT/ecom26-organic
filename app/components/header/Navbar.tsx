@@ -118,9 +118,7 @@ export default function Navbar() {
         open={isCartOpen}
         onOpenChange={setIsCartOpen}
       >
-        <div>
-          <Cart />
-        </div>
+        <Cart />
       </SheetContainer>
     </header>
   );

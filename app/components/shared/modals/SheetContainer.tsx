@@ -63,8 +63,8 @@ export default function SheetContainer({
       <div
         onClick={() => onOpenChange(false)}
         className={`
-          fixed inset-0 z-998 bg-black/40 
-          transition-opacity duration-300
+          fixed inset-0 z-998 bg-black/40
+          transition-opacity duration-300 
           ${open ? "opacity-100 visible" : "opacity-0 invisible"}
         `}
       />
