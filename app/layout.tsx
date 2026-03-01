@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Rajdhani } from 'next/font/google';
 import './globals.css';
 import Navbar from './components/header/Navbar';
-import Footer from './components/footer/Footer';
 import StoreProvider from './components/provider/StoreProvider';
+import Footer from './components/footer/Footer';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],

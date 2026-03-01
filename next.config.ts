@@ -7,8 +7,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'freebw.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
-  },
+  },  
 };
 
 export default nextConfig;

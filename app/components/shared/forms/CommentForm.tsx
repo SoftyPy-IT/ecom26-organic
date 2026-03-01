@@ -20,6 +20,7 @@ export default function CommentForm() {
               <TextInput
                 type="text"
                 name="name"
+                required
                 placeholder="Name"
                 className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
               />
@@ -27,6 +28,7 @@ export default function CommentForm() {
               <TextInput
                 type="email"
                 name="email"
+                required
                 placeholder="Email"
                 className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-green-500 bg-white"
               />
@@ -35,6 +37,7 @@ export default function CommentForm() {
             {/* Comment Textarea */}
             <TextArea
               name="comment"
+              required
               placeholder="Your comment"
               className="w-full px-4 py-3 border border-green-500 focus:outline-none focus:border-green-600 bg-white resize-none"
             />
