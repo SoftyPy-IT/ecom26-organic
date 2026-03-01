@@ -1,5 +1,4 @@
 'use client';
-
 import ProductCards_1 from '@/app/components/cards/ProductCards_1';
 import ProductCards_2 from '@/app/components/cards/ProductCards_2';
 import CategoryItems from '@/app/components/category/CategoryItems';
@@ -8,7 +7,8 @@ import Container from '@/app/components/shared/Container';
 import Pagination from '@/app/components/shared/Pagination';
 import QueryAction from '@/app/components/shared/QueryAction';
 import { ShopProductsData } from '@/app/redux/types/TShop';
-import { useState } from 'react';
+import React from 'react';
+import ViewMode from './ViewMode';
 
 const categoryItems = [
   { id: 1, name: 'Fruits', total: 10 },
@@ -23,54 +23,48 @@ interface ShopProps {
 }
 
 export default function Shop({ products }: ShopProps) {
-  const [search, setSearch] = useState('');
-  const [sort, setSort] = useState('');
-  const [view, setView] = useState<'grid' | 'list'>('grid');
-  const [range, setRange] = useState(1000);
-
   const product = products?.data;
+  const [view, setView] = React.useState<'grid' | 'list'>('grid');
 
   return (
     <Container className="px-2 2xl:px-0 py-8">
-      <div>
-        <QueryAction
-          search={search}
-          setSearch={setSearch}
-          sort={sort}
-          setSort={setSort}
-          view={view}
-          setView={setView}
-        />
-      </div>
-
+      <QueryAction isRange={false} />
       <div className="flex flex-col md:flex-row gap-4 py-4 items-start md:justify-between">
         {/* Sidebar */}
         <aside className="md:w-3/12 w-full lg:col-span-3 md:sticky md:top-24">
-          <QueryAction range={range} setRange={setRange} />
+          <div className="flex items-center justify-between gap-2">
+            <QueryAction isFilter={false} isSearch={false} />
+            <ViewMode view={view} setView={setView} />
+          </div>
           <CategoryItems title="Category" items={categoryItems} />
           <BestSellers title="Best Sales" />
         </aside>
 
         {/* Products Section */}
-        <section
-          className={`md:w-9/12 w-full ${
-            view === 'grid'
-              ? 'grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4'
-              : 'grid grid-cols-1 lg:grid-cols-2 gap-4'
-          }`}
-        >
-          {product?.map((item) =>
-            view === 'grid' ? (
-              <ProductCards_1 key={item._id} payload={item} />
-            ) : (
-              <ProductCards_2 key={item._id} payload={item} />
-            )
-          )}
+        <div className="md:w-9/12 w-full lg:col-span-9">
+          <div>
+            <div
+              className={`grid gap-6 ${view === 'grid' ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-1 2xl:grid-cols-2'}`}
+            >
+              {product?.map((item) =>
+                view === 'grid' ? (
+                  <ProductCards_1 key={item._id} payload={item} />
+                ) : (
+                  <ProductCards_2 key={item._id} payload={item} />
+                )
+              )}
+            </div>
 
-          <div className="col-span-full flex justify-center pt-4">
-            <Pagination />
+            <div className="col-span-full flex justify-center pt-4">
+              <Pagination
+                totalPages={products.meta.totalPages}
+                currentPage={products.meta.page}
+                currentPageItemCount={products.data.length}
+                pageLimit={products.meta.limit}
+              />
+            </div>
           </div>
-        </section>
+        </div>
       </div>
     </Container>
   );
