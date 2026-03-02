@@ -51,7 +51,7 @@ export default function QueryAction({
               rounded-xl border bg-white transition-all duration-200
               ${
                 focused === 'search'
-                  ? 'border-slate-400 shadow-md shadow-slate-100 ring-4 ring-slate-100'
+                  ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
                   : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
               }
             `}
@@ -59,7 +59,7 @@ export default function QueryAction({
             <Search
               size={16}
               className={`absolute left-3.5 shrink-0 transition-colors duration-150 ${
-                focused === 'search' ? 'text-slate-600' : 'text-slate-400'
+                focused === 'search' ? 'text-[#81b03f]' : 'text-[81b03f]/70'
               }`}
             />
             <input
@@ -100,7 +100,7 @@ export default function QueryAction({
               relative shrink-0 overflow-hidden rounded-xl border bg-white transition-all duration-200
               ${
                 focused === 'sort'
-                  ? 'border-slate-400 shadow-md shadow-slate-100 ring-4 ring-slate-100'
+                  ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
                   : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
               }
             `}
@@ -108,7 +108,7 @@ export default function QueryAction({
             <ArrowUpDown
               size={15}
               className={`pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 transition-colors duration-150 ${
-                focused === 'sort' ? 'text-slate-600' : 'text-slate-400'
+                focused === 'sort' ? 'text-[#81b03f]' : 'text-slate-400'
               }`}
             />
             <select
@@ -163,7 +163,7 @@ export default function QueryAction({
           <div className="relative flex items-center">
             <div className="relative h-1.5 w-full rounded-full bg-slate-100">
               <div
-                className="absolute left-0 top-0 h-full rounded-full bg-linear-to-r from-slate-400 to-slate-600 transition-all duration-100"
+                className="absolute left-0 top-0 h-full rounded-full bg-linear-to-r from-[#81b03f] to-[#5a7d2c] transition-all duration-100"
                 style={{ width: `${rangePercent}%` }}
               />
             </div>

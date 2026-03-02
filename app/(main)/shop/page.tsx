@@ -1,6 +1,7 @@
 import { getAllProducts } from '@/actions/quires/product.api';
 import Shop from './__components/Shop';
 import DataNotFound from '@/app/components/shared/DataNotFound';
+import { getAllCategories } from '@/actions/quires/categories.api';
 
 interface PageProps {
   searchParams: Promise<{
@@ -23,10 +24,11 @@ export default async function page({ searchParams }: PageProps) {
   if (range) query.set('range', range);
 
   const { data } = await getAllProducts(query.toString());
+  const { data: categoryData } = await getAllCategories();
 
   if (!data) {
     return <DataNotFound />;
   }
 
-  return <Shop products={data} />;
+  return <Shop products={data} categoryData={categoryData} />;
 }

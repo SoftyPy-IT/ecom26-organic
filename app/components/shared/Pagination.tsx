@@ -102,7 +102,7 @@ export default function Pagination({
                   px-2 text-sm font-medium transition-all duration-150
                   ${
                     page === currentPage
-                      ? 'bg-slate-800 text-white shadow-md shadow-slate-200 scale-105'
+                      ? 'bg-[#81b03f] text-white shadow-md shadow-slate-200 scale-105'
                       : 'border border-slate-200 bg-white text-slate-600 shadow-sm hover:border-slate-300 hover:bg-slate-50 hover:text-slate-800 hover:shadow'
                   }
                 `}

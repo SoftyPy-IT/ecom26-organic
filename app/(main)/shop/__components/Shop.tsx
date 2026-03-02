@@ -9,20 +9,14 @@ import QueryAction from '@/app/components/shared/QueryAction';
 import { ShopProductsData } from '@/app/redux/types/TShop';
 import React from 'react';
 import ViewMode from './ViewMode';
-
-const categoryItems = [
-  { id: 1, name: 'Fruits', total: 10 },
-  { id: 2, name: 'Vegetables', total: 10 },
-  { id: 3, name: 'Grains', total: 10 },
-  { id: 4, name: 'Dairy', total: 10 },
-  { id: 5, name: 'Beverages', total: 10 },
-];
+import { TCategory } from '@/app/redux/types/TCategory';
 
 interface ShopProps {
   products: ShopProductsData;
+  categoryData: TCategory[];
 }
 
-export default function Shop({ products }: ShopProps) {
+export default function Shop({ products, categoryData }: ShopProps) {
   const product = products?.data;
   const [view, setView] = React.useState<'grid' | 'list'>('grid');
 
@@ -36,7 +30,7 @@ export default function Shop({ products }: ShopProps) {
             <QueryAction isFilter={false} isSearch={false} />
             <ViewMode view={view} setView={setView} />
           </div>
-          <CategoryItems title="Category" items={categoryItems} />
+          <CategoryItems title="Category" payload={categoryData} />
           <BestSellers title="Best Sales" />
         </aside>
 

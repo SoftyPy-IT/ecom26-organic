@@ -9,7 +9,7 @@ interface ProductCardsProps {
 
 export default function ProductCards_1({ payload }: ProductCardsProps) {
   return (
-    <div className="group relative flex flex-col bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-slate-200/60 hover:-translate-y-1 transition-all duration-300">
+    <div className="group relative flex flex-col bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#81b03f]/60 hover:-translate-y-1 transition-all duration-300">
       {/* Image Container */}
       <div className="relative w-full aspect-square overflow-hidden bg-slate-50">
         <Image
