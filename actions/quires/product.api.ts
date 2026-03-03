@@ -12,6 +12,12 @@ export const getProductById = (id: string) =>
     revalidate: 60,
   });
 
+export const getProductBySlug = (slug: string) =>
+  api.get<any>(`/product/details/${slug}`, {
+    tags: ['products'],
+    revalidate: 60,
+  });
+
 export const getProductsByCategory = (category: string, query?: string) =>
   api.get<any>(`/product/category/${category}?${query ?? ''}`, {
     tags: ['products'],

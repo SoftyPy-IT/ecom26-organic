@@ -1,134 +1,25 @@
+import { highlightProduct } from '@/actions/quires/highlighProduct.api';
 import SeeMore from '../buttons/SeeMore';
 import Container from '../shared/Container';
-import OfferedProducts from './OfferedProducts'
+import OfferedProducts from './OfferedProducts';
+import { ISection } from '@/app/redux/types/THighlighted';
 
-export default function HighlightedProducts() {
-  const specialProducts = [
-    {
-      id: 1,
-      name: "Cabbage",
-      price: 100,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-09.jpg",
-    },
-    {
-      id: 2,
-      name: "Broccoli",
-      price: 200,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-10.jpg",
-    },
-    {
-      id: 3,
-      name: "Carrot",
-      price: 300,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-11.jpg",
-    },
-    {
-      id: 4,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 5,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 6,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-  ];
-
-  const popularProducts = [
-    {
-      id: 1,
-      name: "Cabbage",
-      price: 100,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-09.jpg",
-    },
-    {
-      id: 2,
-      name: "Broccoli",
-      price: 200,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-10.jpg",
-    },
-    {
-      id: 3,
-      name: "Carrot",
-      price: 300,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-11.jpg",
-    },
-    {
-      id: 4,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 5,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 6,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-
-  ];
-
-  const randomProducts = [
-    {
-      id: 1,
-      name: "Cabbage",
-      price: 100,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-09.jpg",
-    },
-    {
-      id: 2,
-      name: "Broccoli",
-      price: 200,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-10.jpg",
-    },
-    {
-      id: 3,
-      name: "Carrot",
-      price: 300,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-11.jpg",
-    },
-    {
-      id: 4,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 5,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-    {
-      id: 6,
-      name: "Capsicum",
-      price: 400,
-      image: "https://freebw.com/templates/oragnive-v1/images/product-12.jpg",
-    },
-  ];
-
+export default async function HighlightedProducts() {
+  const { data } = await highlightProduct();
   return (
-    <Container className='px-2 2xl:px-0'>
+    <Container className="px-2 2xl:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <OfferedProducts title1='Special' title2='Products' subtitle='Special Products' products={specialProducts} />
-        <OfferedProducts title1='Popular' title2='Products' subtitle='Popular Products' products={popularProducts} />
-        <OfferedProducts title1='Random' title2='Products' subtitle='Random Products' products={randomProducts} />
+        {data.slice(1, 4).map((section: ISection) => (
+          <OfferedProducts
+            key={section._id}
+            title1={section.title}
+            title2={section.subTitle}
+            subtitle={section.description}
+            products={section.products}
+          />
+        ))}
       </div>
-      <SeeMore href="/shop" title='View All Products' />
+      <SeeMore href="/shop" title="View All Products" />
     </Container>
   );
 }

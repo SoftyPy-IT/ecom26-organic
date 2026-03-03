@@ -8,7 +8,6 @@ interface ProductCardsProps {
 }
 
 export default function ProductCards_2({ payload }: ProductCardsProps) {
-
   return (
     <div className="group relative flex gap-4 sm:gap-6 bg-white border border-slate-100 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-lg hover:shadow-slate-200/60 hover:border-slate-200 transition-all duration-300">
       {/* Wishlist */}
@@ -33,7 +32,6 @@ export default function ProductCards_2({ payload }: ProductCardsProps) {
       {/* Content */}
       <div className="flex flex-1 flex-col justify-between min-w-0 pr-6">
         <div className="flex flex-col gap-1.5">
-         
           {/* Name */}
           <h3 className="text-sm sm:text-base font-semibold text-slate-800 leading-snug line-clamp-2 group-hover:text-[#81b03f] transition-colors duration-200">
             {payload?.name}
@@ -67,7 +65,7 @@ export default function ProductCards_2({ payload }: ProductCardsProps) {
           <div className="h-4 w-px bg-slate-200" />
 
           <Link
-            href={`/shop/${payload?._id}`}
+            href={`/shop/${payload?.slug}`}
             className="
               inline-flex items-center gap-1.5 rounded-xl bg-[#81b03f] px-3 py-2
               text-xs font-semibold uppercase tracking-wide text-white shadow-sm

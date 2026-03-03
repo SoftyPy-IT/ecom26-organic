@@ -1,7 +1,8 @@
-import { getAllProducts } from '@/actions/quires/product.api';
+import { getAllProducts, getProductBySlug } from '@/actions/quires/product.api';
 import Shop from './__components/Shop';
 import DataNotFound from '@/app/components/shared/DataNotFound';
 import { getAllCategories } from '@/actions/quires/categories.api';
+import { highlightProductBySlug } from '@/actions/quires/highlighProduct.api';
 
 interface PageProps {
   searchParams: Promise<{
@@ -25,10 +26,12 @@ export default async function page({ searchParams }: PageProps) {
 
   const { data } = await getAllProducts(query.toString());
   const { data: categoryData } = await getAllCategories();
+  const { data: productData } = await highlightProductBySlug('69a6858120bda1bb3a8127b4');
 
   if (!data) {
     return <DataNotFound />;
   }
 
-  return <Shop products={data} categoryData={categoryData} />;
+
+  return <Shop products={data} categoryData={categoryData} productData={productData?.products} />;
 }

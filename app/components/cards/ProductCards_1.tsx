@@ -24,7 +24,7 @@ export default function ProductCards_1({ payload }: ProductCardsProps) {
 
         {/* Action buttons — slide up from bottom of image */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
-          <Link href={`/shop/${payload?._id}`}>
+          <Link href={`/shop/${payload?.slug}`}>
             <button
               title="Quick view"
               className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-600 shadow-md hover:bg-[#81b03f] hover:text-white transition-colors duration-150"

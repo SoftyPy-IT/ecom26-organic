@@ -1,47 +1,35 @@
-"use client";
+'use client';
+import { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Grid } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/grid';
 
-import { useRef, useMemo } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Grid } from "swiper/modules";
-import type { Swiper as SwiperType } from "swiper";
-
-import "swiper/css";
-import "swiper/css/grid";
-
-import OfferedCard from "../cards/OfferedCard";
-import SectionTitle from "../shared/SectionTitle";
-
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-}
+import OfferedCard from '../cards/OfferedCard';
+import SectionTitle from '../shared/SectionTitle';
+import { IProduct } from '@/app/redux/types/THighlighted';
 
 interface OfferedProductsProps {
   title1?: string;
   title2?: string;
   subtitle?: string;
-  products?: Product[];
+  products?: IProduct[];
   rows?: number;
   preview?: number;
   autoplayDelay?: number;
 }
 
 export default function OfferedProducts({
-  title1 = "Products",
-  title2 = "Products",
-  subtitle = "Products",
+  title1 = 'Products',
+  title2 = 'Products',
+  subtitle = 'Products',
   products = [],
   rows = 3,
   preview = 1,
   autoplayDelay = 3000,
 }: OfferedProductsProps) {
   const swiperRef = useRef<SwiperType | null>(null);
-
-  const slides = useMemo(() => {
-    return products.length ? products : [];
-  }, [products]);
 
   return (
     <section className="py-10">
@@ -77,7 +65,7 @@ export default function OfferedProducts({
         slidesPerView={preview}
         grid={{
           rows: rows,
-          fill: "row",
+          fill: 'row',
         }}
         autoplay={{
           delay: autoplayDelay,
@@ -86,12 +74,13 @@ export default function OfferedProducts({
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         className="w-full"
       >
-        {slides.map((product) => (
-          <SwiperSlide key={product.id} className="flex justify-center">
+        {products.map((product: IProduct) => (
+          <SwiperSlide key={product._id} className="flex justify-center">
             <OfferedCard
-              image={product.image}
-              title={product.name}
-              price={product.price}
+              image={product?.thumbnail}
+              title={product?.name}
+              slug={product?.slug}
+              price={product?.price}
             />
           </SwiperSlide>
         ))}

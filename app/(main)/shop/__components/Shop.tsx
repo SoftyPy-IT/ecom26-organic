@@ -10,13 +10,15 @@ import { ShopProductsData } from '@/app/redux/types/TShop';
 import React from 'react';
 import ViewMode from './ViewMode';
 import { TCategory } from '@/app/redux/types/TCategory';
+import { ISection } from '@/app/redux/types/THighlighted';
 
 interface ShopProps {
   products: ShopProductsData;
   categoryData: TCategory[];
+  productData?: ISection;
 }
 
-export default function Shop({ products, categoryData }: ShopProps) {
+export default function Shop({ products, categoryData, productData }: ShopProps) {
   const product = products?.data;
   const [view, setView] = React.useState<'grid' | 'list'>('grid');
 
@@ -31,7 +33,7 @@ export default function Shop({ products, categoryData }: ShopProps) {
             <ViewMode view={view} setView={setView} />
           </div>
           <CategoryItems title="Category" payload={categoryData} />
-          <BestSellers title="Best Sales" />
+          <BestSellers title="Best Sales" products={productData?.products || []} />
         </aside>
 
         {/* Products Section */}
