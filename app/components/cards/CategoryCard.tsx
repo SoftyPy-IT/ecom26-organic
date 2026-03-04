@@ -9,7 +9,7 @@ interface Props {
 export default function CategoryCard({ category }: Props) {
   return (
     <div className=" relative w-full h-80 aspect-square overflow-hidden group cursor-pointer">
-      <Link href={`/shop?category=${category.slug}`}>
+      <Link href={`/categories/${category.slug}`}>
         {/* Category Image */}
         <Image
           src={category.image || '/placeholder.png'}

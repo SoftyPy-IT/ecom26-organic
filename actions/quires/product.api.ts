@@ -18,8 +18,8 @@ export const getProductBySlug = (slug: string) =>
     revalidate: 60,
   });
 
-export const getProductsByCategory = (category: string, query?: string) =>
-  api.get<any>(`/product/category/${category}?${query ?? ''}`, {
+export const getProductsByCategory = (query?: string) =>
+  api.get<any>(`/category/products?${query ?? ''}`, {
     tags: ['products'],
     revalidate: 60,
   });

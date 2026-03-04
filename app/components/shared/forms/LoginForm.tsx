@@ -4,10 +4,18 @@ import AppForm from './AppFrom';
 import TextInput from '../inputs/TextInput';
 import SubmitButton from '../buttons/SubmitButton';
 import SectionHeader from '../SectionHeader';
+import { useLoginMutation } from '@/app/redux/features/auth/auth.api';
+import { showToast } from '@/app/utils/Toast';
 
 export default function LoginForm() {
+  const [login] = useLoginMutation();
   const handleSubmit = async (values: any) => {
-    
+    const res = await login(values);
+    if (res.error) {
+      showToast({ message: "Profile updated successfully!", type: "error", position: "bottom", alignment: "right" });
+    } else {
+      showToast({ message: "Profile updated successfully!", type: "success", position: "bottom", alignment: "right" });
+    }
   };
 
   return (

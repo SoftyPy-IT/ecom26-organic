@@ -28,7 +28,7 @@ export default async function page({ searchParams }: PageProps) {
   const { data: categoryData } = await getAllCategories();
   const { data: productData } = await highlightProductBySlug('69a6858120bda1bb3a8127b4');
 
-  if (!data) {
+  if (!data || data.data.length === 0 || !categoryData || categoryData.length === 0 || !productData || productData.products.length === 0) {
     return <DataNotFound />;
   }
 

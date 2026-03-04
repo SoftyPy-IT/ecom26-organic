@@ -14,7 +14,7 @@ import { ISection } from '@/app/redux/types/THighlighted';
 
 interface ShopProps {
   products: ShopProductsData;
-  categoryData: TCategory[];
+  categoryData?: TCategory[];
   productData?: ISection;
 }
 
@@ -32,8 +32,8 @@ export default function Shop({ products, categoryData, productData }: ShopProps)
             <QueryAction isFilter={false} isSearch={false} />
             <ViewMode view={view} setView={setView} />
           </div>
-          <CategoryItems title="Category" payload={categoryData} />
-          <BestSellers title="Best Sales" products={productData?.products || []} />
+          {categoryData && <CategoryItems title="Category" payload={categoryData} />}
+          {productData && <BestSellers title="Best Sales" products={productData?.products} />}
         </aside>
 
         {/* Products Section */}

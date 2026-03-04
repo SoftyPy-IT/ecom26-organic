@@ -4,6 +4,7 @@ import './globals.css';
 import Navbar from './components/header/Navbar';
 import StoreProvider from './components/provider/StoreProvider';
 import Footer from './components/footer/Footer';
+import { ToastProvider } from './components/provider/ToastProvider';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -24,7 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="min-h-screen flex-1">
           <StoreProvider>
-            {children}
+            <ToastProvider>
+              {children}
+            </ToastProvider>
           </StoreProvider>
         </main>
         <Footer />

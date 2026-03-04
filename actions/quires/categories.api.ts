@@ -5,3 +5,9 @@ export const getAllCategories = (query?: string) =>
     tags: ['categories'],
     revalidate: 60,
   });
+
+export const getCategoryBySlug = (slug: string) =>
+  api.get<any>(`/category/${slug}`, {
+    tags: ['category'],
+    revalidate: 60,
+  });
