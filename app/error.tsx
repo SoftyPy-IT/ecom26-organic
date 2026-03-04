@@ -6,7 +6,7 @@ export default function error() {
       <p className="text-gray-600 text-lg">Sorry, something went wrong. Please try again later.</p>
       <button
         onClick={() => window.location.href = '/'}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        className="mt-6 px-4 py-2 bg-[#81b03f] border-[#81b03f] text-white rounded hover:bg-[#81b03f] hover:border-[#81b03f] transition"
       >
         Go Home
       </button>

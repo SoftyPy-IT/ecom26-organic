@@ -2,7 +2,6 @@ import { getProductBySlug } from '@/actions/quires/product.api';
 import ViewDetails from '@/app/components/cards/ViewDetails';
 import RelatedProducts from '@/app/components/products/RelatedProducts';
 import Container from '@/app/components/shared/Container';
-import ProductReviews from '@/app/components/shared/ProductReviews';
 
 interface Props {
   params: Promise<{ slug: string }>;

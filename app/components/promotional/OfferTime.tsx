@@ -29,7 +29,7 @@ const calculateTimeLeft = (target: number): TimeLeft => {
 };
 
 export default function OfferTime({
-  endDate = "2026-02-25T23:59:59",
+  endDate = "2026-12-31T23:59:59",
   onExpire,
 }: OfferTimeProps) {
   const targetDate = useMemo(() => new Date(endDate).getTime(), [endDate]);

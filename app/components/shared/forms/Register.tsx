@@ -4,14 +4,22 @@ import AppForm from './AppFrom'
 import TextInput from '../inputs/TextInput'
 import SubmitButton from '../buttons/SubmitButton'
 import Link from 'next/link'
+import { useRegisterMutation } from '@/app/redux/features/auth/auth.api'
 
 export default function Register() {
-  const handleSubmit = (values: any) => {
-    console.log(values);
+  const [register, { isLoading }] = useRegisterMutation()
+
+  const handleSubmit = async (values: any) => {
+    try {
+      const res = await register(values).unwrap()
+      console.log(res);
+    } catch (error: any) {
+      console.log(error);
+    }
   };
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md border border-gray-200 p-6 shadow-lg">
+      <div className="w-full max-w-lg border border-gray-200 p-6 shadow-lg rounded-lg">
         <SectionHeader
           title="Register"
           subtitle="Welcome back! Please enter your details."
@@ -24,11 +32,19 @@ export default function Register() {
           <div className="space-y-5">
             {/* Name */}
             <TextInput
-              name="name"
+              name="firstName"
               type="text"
-              label="Name"
-              placeholder="Enter your name"
-              autoComplete="name"
+              label="First Name"
+              placeholder="Enter your first name"
+              autoComplete="firstName"
+              required
+            />
+            <TextInput
+              name="lastName"
+              type="text"
+              label="Last Name"
+              placeholder="Enter your last name"
+              autoComplete="lastName"
               required
             />
             {/* Email */}
@@ -62,7 +78,7 @@ export default function Register() {
               </label>
 
               <Link
-                href="/forgot-password"
+                href="/forgot"
                 className="font-medium hover:underline"
               >
                 Forgot password?

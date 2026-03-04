@@ -22,15 +22,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${rajdhani.className} antialiased`}>
-        <Navbar />
-        <main className="min-h-screen flex-1">
-          <StoreProvider>
+        <StoreProvider>
+          <Navbar />
+          <main className="min-h-screen flex-1">
             <ToastProvider>
               {children}
             </ToastProvider>
-          </StoreProvider>
-        </main>
-        <Footer />
+          </main>
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

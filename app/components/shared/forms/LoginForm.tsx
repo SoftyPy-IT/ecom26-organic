@@ -20,7 +20,7 @@ export default function LoginForm() {
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-md border border-gray-200 p-6 shadow-lg">
+      <div className="w-full max-w-lg border border-gray-200 p-6 shadow-lg rounded-lg">
         <SectionHeader title="Login" subtitle="Welcome back! Please enter your details." />
 
         <AppForm defaultValues={{ email: '', password: '' }} onSubmit={handleSubmit}>
@@ -52,7 +52,7 @@ export default function LoginForm() {
                 Remember me
               </label>
 
-              <Link href="/forgot-password" className="font-medium hover:underline">
+              <Link href="/forgot" className="font-medium hover:underline">
                 Forgot password?
               </Link>
             </div>

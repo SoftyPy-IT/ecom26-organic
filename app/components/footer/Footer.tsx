@@ -52,7 +52,7 @@ export default async function Footer() {
         id: category._id,
         name: category.name,
         image: category.image,
-        href: `/category/${category.slug}`,
+        href: `/categories/${category.slug}`,
         label: category.name,
       })),
     },

@@ -8,8 +8,10 @@ import { usePathname } from 'next/navigation';
 import SheetContainer from '../shared/modals/SheetContainer';
 import Cart from '../add-to-cart/Cart';
 import SearchField from '../shared/inputs/SearchField';
+import { useAppSelector } from '@/app/redux/hooks/hook';
 
 export default function Navbar() {
+  const {itemsCount} = useAppSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -73,9 +75,11 @@ export default function Navbar() {
           </button>
           <button onClick={() => setIsCartOpen(true)} className="relative transition hover:text-green-400">
             <ShoppingCart size={20} />
-            <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-400 text-xs ">
-              2
-            </span>
+            {itemsCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-400 text-xs ">
+                {itemsCount}
+              </span>
+            )}
           </button>
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}

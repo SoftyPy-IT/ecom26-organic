@@ -1,30 +1,93 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ProductState {
-  selectedImage: string | null;
-  images: string[];
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  thumbnail: string;
 }
 
-const initialState: ProductState = {
-  selectedImage: null,
-  images: [],
+export interface CartState {
+  items: CartItem[];
+  itemsCount: number;
+  subTotal: number;
+  totalPrice: number;
+  shippingCharge: number;
+}
+
+//  Local Storage:
+
+const CART_STORAGE_KEY = "cart";
+
+const loadFromLocalStorage = (): CartItem[] => {
+  try {
+    const data = localStorage.getItem(CART_STORAGE_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error("Failed to load cart from localStorage:", error);
+    return [];
+  }
 };
 
-const productSlice = createSlice({
-  name: "product",
+const saveToLocalStorage = (items: CartItem[]) => {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+  } catch (error) {
+    console.error("Failed to save cart to localStorage:", error);
+  }
+};
+
+// Initial State:
+const initialState: CartState = {
+  items: loadFromLocalStorage(),
+  itemsCount: loadFromLocalStorage().length,
+  shippingCharge: 50,
+  subTotal: loadFromLocalStorage().reduce((acc, item) => acc + item.price * item.quantity, 0),
+  totalPrice: loadFromLocalStorage().reduce((acc, item) => acc + item.price * item.quantity, 0) + 50,
+};
+
+const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {
-    setImages: (state, action: PayloadAction<string[]>) => {
-      state.images = action.payload;
-      if (!state.selectedImage && action.payload.length > 0) {
-        state.selectedImage = action.payload[0];
+    addToCart: (state, action: PayloadAction<CartItem>) => {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem) {
+        existingItem.quantity += action.payload.quantity;
+      } else {
+        state.items.push(action.payload);
       }
+
+      saveToLocalStorage(state.items);
+      state.itemsCount = state.items.length;
+      state.subTotal = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      state.totalPrice = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0) + state.shippingCharge;
     },
-    selectImage: (state, action: PayloadAction<string>) => {
-      state.selectedImage = action.payload;
+
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
+      saveToLocalStorage(state.items);
+      state.itemsCount = state.items.length;
+      state.subTotal = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+      state.totalPrice = state.items.reduce((acc, item) => acc + item.price * item.quantity, 0) + state.shippingCharge;
+    },
+
+    clearCart: (state) => {
+      state.items = [];
+      saveToLocalStorage([]);
+      state.itemsCount = 0;
+      state.subTotal = 0;
+      state.totalPrice = 0;
     },
   },
 });
 
-export const { setImages, selectImage } = productSlice.actions;
-export default productSlice.reducer;
+
+export const { addToCart, removeFromCart, clearCart } =
+  cartSlice.actions;
+
+export default cartSlice.reducer;

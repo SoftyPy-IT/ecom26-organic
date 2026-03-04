@@ -1,13 +1,16 @@
 import { ShopProduct } from '@/app/redux/types/TShop';
-import { Heart, Search, ShoppingCart, Star } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import AddToWishlist from '../buttons/AddToWishlist';
+import AddToCart_1 from '../buttons/AddToCart_1';
 
 interface ProductCardsProps {
   payload: ShopProduct;
 }
 
 export default function ProductCards_1({ payload }: ProductCardsProps) {
+
   return (
     <div className="group relative flex flex-col bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#81b03f]/60 hover:-translate-y-1 transition-all duration-300">
       {/* Image Container */}
@@ -32,18 +35,14 @@ export default function ProductCards_1({ payload }: ProductCardsProps) {
               <Search size={15} strokeWidth={2} />
             </button>
           </Link>
-          <button
-            title="Add to wishlist"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-600 shadow-md hover:bg-red-500 hover:text-white transition-colors duration-150"
-          >
-            <Heart size={15} strokeWidth={2} />
-          </button>
-          <button
-            title="Add to cart"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-slate-600 shadow-md hover:bg-[#81b03f] hover:text-white transition-colors duration-150"
-          >
-            <ShoppingCart size={15} strokeWidth={2} />
-          </button>
+          <AddToWishlist product={payload} />
+          <AddToCart_1
+            id={payload._id}
+            name={payload.name}
+            price={payload.price}
+            quantity={1}
+            thumbnail={payload.thumbnail}
+          />
         </div>
 
       </div>

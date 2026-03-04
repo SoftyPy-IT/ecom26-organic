@@ -11,10 +11,10 @@ import type { Swiper as SwiperType } from 'swiper';
 
 import Image from 'next/image';
 import ItemsCountButton from '../buttons/ItemsCountButton';
-import AddToCard from '../buttons/AddToCard';
 import MagnifierImage from './MagnifierImage';
 import { IProductDetails } from '@/app/redux/types/TProductDetails';
 import ProductReviews from '../shared/ProductReviews';
+import AddToCart_2 from '../buttons/AddToCart_2';
 
 interface ViewDetailsProps {
   payload: IProductDetails;
@@ -22,8 +22,10 @@ interface ViewDetailsProps {
 
 export default function ViewDetails({ payload }: ViewDetailsProps) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const {
+    _id,
     name,
     code,
     rating,
@@ -38,10 +40,10 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
 
   const productImages = images?.length ? images : [thumbnail];
 
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* ================= IMAGES ================= */}
         <div>
           <Swiper
             style={
@@ -83,15 +85,12 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
             ))}
           </Swiper>
         </div>
-
-        {/* ================= DETAILS ================= */}
         <div className="space-y-6">
-          {/* Title */}
+
           <div>
             <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
           </div>
 
-          {/* Price */}
           <div>
             {discount_price > 0 ? (
               <div className="flex items-center gap-3">
@@ -102,8 +101,6 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
               <div className="text-2xl font-semibold text-primary">${price}</div>
             )}
           </div>
-
-          {/* Description (HTML from backend) */}
           <div>
             <h3 className="text-lg text-justify font-semibold mb-2">Description</h3>
             <div>{short_description}</div>
@@ -118,8 +115,8 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
 
           {/* Actions */}
           <div className="flex items-center gap-4 pt-2">
-            <ItemsCountButton />
-            <AddToCard />
+            <ItemsCountButton min={1} max={stock} quantity={quantity} setQuantity={setQuantity} />
+            <AddToCart_2 id={_id} name={name} price={price} quantity={quantity} thumbnail={thumbnail} />
           </div>
         </div>
       </div>
@@ -127,8 +124,6 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
     </div>
   );
 }
-
-/* ================= Small Helper ================= */
 
 function InfoRow({ label, value }: { label: string; value: string | number }) {
   return (

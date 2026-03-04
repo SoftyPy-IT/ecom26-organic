@@ -74,7 +74,7 @@ export default function ProductCards_2({ payload }: ProductCardsProps) {
             "
           >
             <ShoppingCart size={13} strokeWidth={2.2} />
-            Add to cart
+            Buy Now
           </Link>
         </div>
       </div>
