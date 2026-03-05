@@ -2,7 +2,7 @@ import { baseApi } from "../../api/base.api";
 
 export const checkOutApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createOrder: builder.mutation<void, { data: any }>({
+    createOrder: builder.mutation<any, { data: any }>({
       query: ({ data }) => ({
         url: "/order/create",
         method: "POST",

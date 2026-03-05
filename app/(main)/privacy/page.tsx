@@ -1,18 +1,11 @@
 import Container from '@/app/components/shared/Container'
-import React from 'react'
+import SectionHeader from '@/app/components/shared/SectionHeader'
 
 export default function page() {
   return (
     <Container className='px-2 2xl:px-0'>
+      <SectionHeader title="Privacy Policy" subtitle='This Privacy Policy explains how we collect, use, and protect your personal information when you use our website or services.' />
       <div className="py-10 space-y-6">
-        <h1 className="text-3xl font-bold">Privacy Policy</h1>
-
-        <p>
-          Your privacy is important to us. This Privacy Policy explains how we
-          collect, use, and protect your personal information when you use our
-          website or services.
-        </p>
-
         <h2 className="text-2xl font-semibold mt-6">1. Information We Collect</h2>
         <ul className="list-disc list-inside space-y-2">
           <li>Personal information you provide to us (name, email, contact info).</li>

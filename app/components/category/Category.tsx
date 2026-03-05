@@ -1,8 +1,8 @@
 import SectionHeader from '../shared/SectionHeader';
 import CategoryCard from '../cards/CategoryCard';
-import SeeMore from '../buttons/SeeMore';
 import { getAllCategories } from '@/actions/quires/categories.api';
 import { TCategory } from '@/app/redux/types/TCategory';
+import SeeMore from '../shared/buttons/SeeMore';
 
 export default async function Category() {
   const { data } = await getAllCategories();

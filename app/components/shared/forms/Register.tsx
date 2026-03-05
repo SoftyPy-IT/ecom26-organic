@@ -1,58 +1,84 @@
 "use client"
-import SectionHeader from '../SectionHeader'
-import AppForm from './AppFrom'
-import TextInput from '../inputs/TextInput'
-import SubmitButton from '../buttons/SubmitButton'
-import Link from 'next/link'
-import { useRegisterMutation } from '@/app/redux/features/auth/auth.api'
+
+import SectionHeader from "../SectionHeader"
+import AppForm from "./AppFrom"
+import TextInput from "../inputs/TextInput"
+import SubmitButton from "../buttons/SubmitButton"
+import Link from "next/link"
+import { useRegisterMutation } from "@/app/redux/features/auth/auth.api"
+import { useRouter } from "next/navigation"
+
+interface RegisterFormValues {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
 
 export default function Register() {
-  const [register, { isLoading }] = useRegisterMutation()
+  const navigate = useRouter()
+  const [registerUser, { isLoading }] = useRegisterMutation()
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: RegisterFormValues, reset: () => void) => {
     try {
-      const res = await register(values).unwrap()
-      console.log(res);
+      const res = await registerUser(values).unwrap()
+      console.log("Registration successful:", res)
+      reset()
+      if (res.success && res.data.token) {
+        navigate.push(`/verify-email?t=${res.data.token}`)
+      }
     } catch (error: any) {
-      console.log(error);
+      console.error("Registration failed:", error)
+      // TODO: show error toast
     }
-  };
+  }
+
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-lg border border-gray-200 p-6 shadow-lg rounded-lg">
+    <div className="flex items-center justify-center h-screen">
+      <div className="w-full max-w-lg bg-white border border-gray-200 p-6 rounded-lg shadow-sm">
+
         <SectionHeader
-          title="Register"
-          subtitle="Welcome back! Please enter your details."
+          title="Create Account"
+          subtitle="Sign up to get started"
         />
 
         <AppForm
-          defaultValues={{ email: "", password: "" }}
+          defaultValues={{
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+          }}
           onSubmit={handleSubmit}
         >
           <div className="space-y-5">
-            {/* Name */}
-            <TextInput
-              name="firstName"
-              type="text"
-              label="First Name"
-              placeholder="Enter your first name"
-              autoComplete="firstName"
-              required
-            />
-            <TextInput
-              name="lastName"
-              type="text"
-              label="Last Name"
-              placeholder="Enter your last name"
-              autoComplete="lastName"
-              required
-            />
+
+            {/* Name Fields */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <TextInput
+                name="firstName"
+                type="text"
+                label="First Name"
+                placeholder="John"
+                autoComplete="given-name"
+                required
+              />
+              <TextInput
+                name="lastName"
+                type="text"
+                label="Last Name"
+                placeholder="Doe"
+                autoComplete="family-name"
+                required
+              />
+            </div>
+
             {/* Email */}
             <TextInput
               name="email"
               type="email"
               label="Email Address"
-              placeholder="Enter your email"
+              placeholder="john@example.com"
               autoComplete="email"
               required
             />
@@ -62,48 +88,34 @@ export default function Register() {
               name="password"
               type="password"
               label="Password"
-              placeholder="Enter your password"
-              autoComplete="current-password"
+              placeholder="Create a strong password"
+              autoComplete="new-password"
               required
             />
 
-            {/* Remember + Forgot */}
-            <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  className="accent-black rounded"
-                />
-                Remember me
-              </label>
-
-              <Link
-                href="/forgot"
-                className="font-medium hover:underline"
-              >
-                Forgot password?
-              </Link>
-            </div>
-
-            {/* Submit */}
+            {/* Submit Button */}
             <SubmitButton
-              title="Register"
+              title={isLoading ? "Creating Account..." : "Create Account"}
+              disabled={isLoading}
               className="w-full"
             />
+
           </div>
         </AppForm>
 
-        {/* Register */}
+        {/* Login Redirect */}
         <p className="text-center text-sm mt-6 text-gray-600">
           Already have an account?{" "}
           <Link
             href="/login"
             className="font-semibold text-black hover:underline"
           >
-            Login
+            Sign In
           </Link>
         </p>
+
       </div>
     </div>
+
   )
 }

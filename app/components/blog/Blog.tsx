@@ -1,9 +1,9 @@
 import { getAllBlogs } from '@/actions/quires/blog.api';
-import SeeMore from '../buttons/SeeMore';
 import BlogCard from '../cards/BlogCard';
 import Container from '../shared/Container';
 import SectionHeader from '../shared/SectionHeader';
 import { TBlog } from '@/app/redux/types/TBlog';
+import SeeMore from '../shared/buttons/SeeMore';
 
 export default async function Blog() {
   const { data: blogData } = await getAllBlogs('limit=2');

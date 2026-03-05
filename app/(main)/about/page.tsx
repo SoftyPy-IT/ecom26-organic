@@ -5,9 +5,20 @@ import Image from 'next/image'
 export default function page() {
 
   const team = [
+
     {
-      name: 'John Doe',
-      role: 'Farmer',
+      name: 'Mohammad',
+      role: 'CEO',
+      image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
+    },
+    {
+      name: 'Ismoil',
+      role: 'CTO',
+      image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
+    },
+    {
+      name: 'Sardor',
+      role: 'Marketer',
       image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
     },
     {
@@ -15,16 +26,6 @@ export default function page() {
       role: 'Farmer',
       image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
     },
-    {
-      name: 'John Doe',
-      role: 'Farmer',
-      image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
-    },
-    {
-      name: 'John Doe',
-      role: 'Farmer',
-      image: 'https://freebw.com/templates/oragnive-v1/images/other-11.jpg'
-    }
   ]
 
   return (

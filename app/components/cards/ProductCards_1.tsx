@@ -2,8 +2,8 @@ import { ShopProduct } from '@/app/redux/types/TShop';
 import { Search, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import AddToWishlist from '../buttons/AddToWishlist';
-import AddToCart_1 from '../buttons/AddToCart_1';
+import AddToWishlist from '../shared/buttons/AddToWishlist';
+import AddToCart_1 from '../shared/buttons/AddToCart_1';
 
 interface ProductCardsProps {
   payload: ShopProduct;
@@ -38,6 +38,7 @@ export default function ProductCards_1({ payload }: ProductCardsProps) {
           <AddToWishlist product={payload} />
           <AddToCart_1
             id={payload._id}
+            code={payload.code}
             name={payload.name}
             price={payload.price}
             quantity={1}

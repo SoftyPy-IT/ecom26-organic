@@ -2,18 +2,19 @@
 
 import { addToCart } from "@/app/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
-import { ShoppingCart } from "lucide-react";
 
 interface AddToCartProps {
   id: string;
+  code: string;
   name: string;
   price: number;
   quantity: number;
   thumbnail: string;
 }
 
-export default function AddToCartButton({
+export default function AddToCart_2({
   id,
+  code,
   name,
   price,
   quantity,
@@ -26,7 +27,7 @@ export default function AddToCartButton({
 
   const handleAddToCart = () => {
     if (!isInCart) {
-      dispatch(addToCart({ id, name, price, quantity, thumbnail }));
+      dispatch(addToCart({ id, code, name, price, quantity, thumbnail }));
     }
   };
 
@@ -36,14 +37,10 @@ export default function AddToCartButton({
       onClick={handleAddToCart}
       disabled={isInCart}
       aria-label={isInCart ? "Already in cart" : "Add to cart"}
-      title={isInCart ? "Already in cart" : "Add to cart"}
-      className={`flex h-9 w-9 items-center bg-white justify-center rounded-full shadow-md transition-colors duration-150
-        ${isInCart
-          ? " text-[#81b03f] cursor-not-allowed"
-          : " text-[#81b03f] hover:bg-[#81b03f] hover:text-white"
-        }`}
+      className={`px-6 py-3  text-white transition-colors duration-200
+        ${isInCart ? "bg-gray-400 cursor-not-allowed" : "bg-[#81b03f] hover:bg-[#6a992f]"}`}
     >
-      <ShoppingCart size={15} strokeWidth={2} />
+      {isInCart ? "Added to Cart" : "Add to Cart"}
     </button>
   );
 }

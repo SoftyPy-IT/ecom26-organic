@@ -1,8 +1,8 @@
 import { highlightProduct } from '@/actions/quires/highlighProduct.api';
-import SeeMore from '../buttons/SeeMore';
 import Container from '../shared/Container';
 import OfferedProducts from './OfferedProducts';
 import { ISection } from '@/app/redux/types/THighlighted';
+import SeeMore from '../shared/buttons/SeeMore';
 
 export default async function HighlightedProducts() {
   const { data } = await highlightProduct();

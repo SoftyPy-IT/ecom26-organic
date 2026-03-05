@@ -1,8 +1,8 @@
 import SectionHeader from '../shared/SectionHeader';
 import Container from '../shared/Container';
 import ProductCards_1 from '../cards/ProductCards_1';
-import SeeMore from '../buttons/SeeMore';
 import { getAllProducts } from '@/actions/quires/product.api';
+import SeeMore from '../shared/buttons/SeeMore';
 
 export default async function FeaturedProducts() {
   const { data } = await getAllProducts();

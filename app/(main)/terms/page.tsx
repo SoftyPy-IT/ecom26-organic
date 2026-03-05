@@ -1,17 +1,11 @@
 import Container from '@/app/components/shared/Container'
+import SectionHeader from '@/app/components/shared/SectionHeader'
 
 export default function page() {
   return (
     <Container className='px-2 2xl:px-0'>
+      <SectionHeader title="Terms and Conditions" subtitle='These Terms and Conditions govern your access and use of our website and services.' />
       <div className="py-10 space-y-6">
-        <h1 className="text-3xl font-bold">Terms and Conditions</h1>
-
-        <p>
-          Welcome to our website. These Terms and Conditions govern your access
-          and use of our website and services. By using our website, you agree
-          to comply with these terms.
-        </p>
-
         <h2 className="text-2xl font-semibold mt-6">1. Acceptance of Terms</h2>
         <p>
           By accessing or using our website, you acknowledge that you have read,

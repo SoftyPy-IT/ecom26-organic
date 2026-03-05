@@ -7,11 +7,16 @@ import SubmitButton from "../buttons/SubmitButton"
 import Select from "../inputs/MultipleSelect"
 import TextInput from "../inputs/TextInput"
 import AppForm from "./AppFrom"
-import { useAppSelector } from "@/app/redux/hooks/hook"
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook"
 import { FieldValues } from "react-hook-form"
+import { clearCart } from "@/app/redux/features/cart/cartSlice"
+import { showToast } from "@/app/utils/Toast"
+import { useRouter } from "next/navigation"
 
 
 export default function CheckoutForm() {
+  const navigate = useRouter();
+  const dispatch = useAppDispatch();
   const { subTotal, totalPrice, shippingCharge, itemsCount, items } = useAppSelector(
     (state) => state.cart
   )
@@ -19,13 +24,16 @@ export default function CheckoutForm() {
   const [createOrder, { isLoading }] = useCreateOrderMutation()
 
   const orderItems = items.map((item) => ({
+    code: item.code,
+    name: item.name,
     productId: item.id,
     quantity: item.quantity,
     price: item.price,
+    thumbnail: item.thumbnail,
   }))
 
 
-  const onSubmit = async (value: FieldValues) => {
+  const onSubmit = async (value: FieldValues, reset: () => void) => {
     const orderData = {
       ...value,
       orderItems,
@@ -39,8 +47,27 @@ export default function CheckoutForm() {
       subTotal,
       total: totalPrice,
     }
-    const res = await createOrder({ data: orderData })
-    console.log(res)
+    try {
+      const res = await createOrder({ data: orderData }).unwrap()
+      if (res?.success) {
+        dispatch(clearCart());
+        reset();
+        showToast({
+          message: res.message,
+          type: "success",
+          position: "bottom",
+          alignment: "right",
+        });
+        navigate.push("/");
+      }
+    } catch (error: any) {
+      showToast({
+        message: error?.data?.message || "Order failed",
+        type: "error",
+        position: "bottom",
+        alignment: "right",
+      });
+    }
   }
 
   return (
@@ -145,7 +172,7 @@ export default function CheckoutForm() {
           </div>
         </div>
         <div className="py-4">
-          <SubmitButton isLoading={isLoading} className="w-full"  title="Place Order" />
+          <SubmitButton isLoading={isLoading} className="w-full" title="Place Order" />
         </div>
       </AppForm>
     </Container>

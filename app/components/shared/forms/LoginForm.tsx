@@ -6,15 +6,45 @@ import SubmitButton from '../buttons/SubmitButton';
 import SectionHeader from '../SectionHeader';
 import { useLoginMutation } from '@/app/redux/features/auth/auth.api';
 import { showToast } from '@/app/utils/Toast';
+import { useRouter } from 'next/navigation';
+import { jwtDecode } from 'jwt-decode';
+import { useAppDispatch } from '@/app/redux/hooks/hook';
+import { setUser } from '@/app/redux/features/auth/authSlice';
 
 export default function LoginForm() {
-  const [login] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useRouter()
+  const [login, { isLoading }] = useLoginMutation();
   const handleSubmit = async (values: any) => {
-    const res = await login(values);
-    if (res.error) {
-      showToast({ message: "Profile updated successfully!", type: "error", position: "bottom", alignment: "right" });
-    } else {
-      showToast({ message: "Profile updated successfully!", type: "success", position: "bottom", alignment: "right" });
+    try {
+      const res = await login(values).unwrap();
+
+      if (res.success && res?.data?.accessToken) {
+        const token = res.data.accessToken;
+        const decoded: any = jwtDecode(token);
+        dispatch(
+          setUser({
+            user: decoded,
+            token,
+          })
+        );
+        localStorage.setItem("accessToken", token);
+        showToast({
+          message: res.message,
+          type: "success",
+          position: "bottom",
+          alignment: "right",
+        });
+
+        navigate.push("/");
+      }
+    } catch (error: any) {
+      showToast({
+        message: error?.data?.message || "Login failed",
+        type: "error",
+        position: "bottom",
+        alignment: "right",
+      });
     }
   };
 
@@ -23,7 +53,7 @@ export default function LoginForm() {
       <div className="w-full max-w-lg border border-gray-200 p-6 shadow-lg rounded-lg">
         <SectionHeader title="Login" subtitle="Welcome back! Please enter your details." />
 
-        <AppForm defaultValues={{ email: '', password: '' }} onSubmit={handleSubmit}>
+        <AppForm onSubmit={handleSubmit}>
           <div className="space-y-5">
             {/* Email */}
             <TextInput
@@ -58,7 +88,7 @@ export default function LoginForm() {
             </div>
 
             {/* Submit */}
-            <SubmitButton title="Login" className="w-full" />
+            <SubmitButton disabled={isLoading} title="Login" className="w-full" />
           </div>
         </AppForm>
 

@@ -10,11 +10,12 @@ import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 
 import Image from 'next/image';
-import ItemsCountButton from '../buttons/ItemsCountButton';
 import MagnifierImage from './MagnifierImage';
 import { IProductDetails } from '@/app/redux/types/TProductDetails';
 import ProductReviews from '../shared/ProductReviews';
-import AddToCart_2 from '../buttons/AddToCart_2';
+import ItemsCountButton from '../shared/buttons/ItemsCountButton';
+import AddToCart_2 from '../shared/buttons/AddToCart_2';
+
 
 interface ViewDetailsProps {
   payload: IProductDetails;
@@ -116,7 +117,7 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
           {/* Actions */}
           <div className="flex items-center gap-4 pt-2">
             <ItemsCountButton min={1} max={stock} quantity={quantity} setQuantity={setQuantity} />
-            <AddToCart_2 id={_id} name={name} price={price} quantity={quantity} thumbnail={thumbnail} />
+            <AddToCart_2 id={_id} code={code} name={name} price={price} quantity={quantity} thumbnail={thumbnail} />
           </div>
         </div>
       </div>
