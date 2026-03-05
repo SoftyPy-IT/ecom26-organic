@@ -2,10 +2,13 @@
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
 import { removeFromCart } from "@/app/redux/features/cart/cartSlice";
+import Link from "next/link";
+import { setCartModal } from "@/app/redux/features/modal/modalSlice";
 
 export default function Cart() {
   const dispatch = useAppDispatch();
-  const { items, subTotal, totalPrice,shippingCharge } = useAppSelector((state) => state.cart);
+  const { isCartOpen } = useAppSelector((state) => state.modal)
+  const { items, subTotal, totalPrice, shippingCharge } = useAppSelector((state) => state.cart);
 
   return (
     <div className="flex flex-col justify-between">
@@ -59,7 +62,7 @@ export default function Cart() {
             <span>{subTotal} ৳</span>
           </div>
           <div className="flex justify-between text-gray-600">
-            <span>Shipping</span>
+            <span>Shipping Ch</span>
             <span>{shippingCharge} ৳</span>
           </div>
           <div className="flex justify-between font-semibold text-gray-800">
@@ -71,9 +74,11 @@ export default function Cart() {
         </div>
 
         {/* Checkout Button */}
-        <button className="w-full mt-6 bg-[#81b03f] text-white py-3 font-medium hover:bg-[#81b03f] transition">
-          CHECKOUT
-        </button>
+        <Link href="/checkout" >
+          <button onClick={() => dispatch(setCartModal(!isCartOpen))} className="w-full mt-6 bg-[#81b03f] text-white py-3 font-medium hover:bg-[#81b03f] transition">
+            CHECKOUT
+          </button>
+        </Link>
       </div>
     </div>
   );

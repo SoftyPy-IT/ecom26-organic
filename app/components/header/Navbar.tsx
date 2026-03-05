@@ -8,13 +8,14 @@ import { usePathname } from 'next/navigation';
 import SheetContainer from '../shared/modals/SheetContainer';
 import Cart from '../add-to-cart/Cart';
 import SearchField from '../shared/inputs/SearchField';
-import { useAppSelector } from '@/app/redux/hooks/hook';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks/hook';
+import { setCartModal, setSearchModal } from '@/app/redux/features/modal/modalSlice';
 
 export default function Navbar() {
-  const {itemsCount} = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const { itemsCount } = useAppSelector((state) => state.cart);
+  const { isCartOpen, isSearchOpen } = useAppSelector((state) => state.modal);
   const [isOpen, setIsOpen] = useState(false);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -70,10 +71,10 @@ export default function Navbar() {
 
         {/* Right icons + mobile toggle */}
         <div className="flex items-center space-x-4">
-          <button onClick={() => setIsSheetOpen(true)} className="transition hover:text-green-400">
+          <button onClick={() => dispatch(setSearchModal(!isSearchOpen))} className="transition hover:text-green-400">
             <Search size={20} />
           </button>
-          <button onClick={() => setIsCartOpen(true)} className="relative transition hover:text-green-400">
+          <button onClick={() => dispatch(setCartModal(!isCartOpen))} className="relative transition hover:text-green-400">
             <ShoppingCart size={20} />
             {itemsCount > 0 && (
               <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-green-400 text-xs ">
@@ -108,8 +109,8 @@ export default function Navbar() {
       <SheetContainer
         title="Search Here"
         position="top"
-        open={isSheetOpen}
-        onOpenChange={setIsSheetOpen}
+        open={isSearchOpen}
+        onOpenChange={() => dispatch(setSearchModal(!isSearchOpen))}
 
       >
         <SearchField />
@@ -120,7 +121,7 @@ export default function Navbar() {
         title="Your Cart"
         position="right"
         open={isCartOpen}
-        onOpenChange={setIsCartOpen}
+        onOpenChange={() => dispatch(setCartModal(!isCartOpen))}
       >
         <Cart />
       </SheetContainer>

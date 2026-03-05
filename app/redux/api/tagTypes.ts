@@ -1,1 +1,3 @@
-export const tagTypes = [];
+export const tagTypes = [
+    "order"
+];
