@@ -5,6 +5,7 @@ import { addToWishList } from "@/app/redux/features/wishlist/wishListSlice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
 import { ShopProduct } from "@/app/redux/types/TShop";
 import { useMemo, useCallback } from "react";
+import { showToast } from "@/app/utils/Toast";
 
 interface AddToWishlistProps {
   product: ShopProduct;
@@ -22,6 +23,7 @@ export default function AddToWishlist({ product }: AddToWishlistProps) {
 
   const handleAdd = useCallback(() => {
     if (isInWishlist) return;
+    showToast({ message: "Product added to wishlist", type: "success" });
 
     dispatch(
       addToWishList({

@@ -2,6 +2,7 @@
 
 import { addToCart } from "@/app/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
+import { showToast } from "@/app/utils/Toast";
 import { ShoppingCart } from "lucide-react";
 
 interface AddToCartProps {
@@ -29,6 +30,7 @@ export default function AddToCartButton({
   const handleAddToCart = () => {
     if (!isInCart) {
       dispatch(addToCart({ id, code, name, price, quantity, thumbnail }));
+      showToast({ message: "Product added to cart", type: "success" });
     }
   };
 

@@ -10,17 +10,21 @@ import { useRouter } from 'next/navigation';
 import { jwtDecode } from 'jwt-decode';
 import { useAppDispatch } from '@/app/redux/hooks/hook';
 import { setUser } from '@/app/redux/features/auth/authSlice';
+import Cookies from 'js-cookie';
 
 export default function LoginForm() {
   const dispatch = useAppDispatch();
   const navigate = useRouter()
   const [login, { isLoading }] = useLoginMutation();
+
+
   const handleSubmit = async (values: any) => {
     try {
       const res = await login(values).unwrap();
 
       if (res.success && res?.data?.accessToken) {
         const token = res.data.accessToken;
+        const refreshToken = res.data.refreshToken;
         const decoded: any = jwtDecode(token);
         dispatch(
           setUser({
@@ -29,6 +33,7 @@ export default function LoginForm() {
           })
         );
         localStorage.setItem("accessToken", token);
+        Cookies.set("refreshToken", refreshToken, { expires: 60 });
         showToast({
           message: res.message,
           type: "success",
@@ -48,12 +53,13 @@ export default function LoginForm() {
     }
   };
 
+
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-lg border border-gray-200 p-6 shadow-lg rounded-lg">
         <SectionHeader title="Login" subtitle="Welcome back! Please enter your details." />
 
-        <AppForm onSubmit={handleSubmit}>
+        <AppForm defaultValues={{ email: "cymyfesoxo@mailinator.com", password: "Pa$$w0rd!" }} onSubmit={handleSubmit}>
           <div className="space-y-5">
             {/* Email */}
             <TextInput

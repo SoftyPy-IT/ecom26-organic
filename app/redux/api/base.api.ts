@@ -39,7 +39,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, Definition
     console.log(result.error);
   }
   if (result?.error?.status === 401) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/auth/refresh-token`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/auth/refresh-token`, {
       method: 'POST',
       credentials: 'include',
     });

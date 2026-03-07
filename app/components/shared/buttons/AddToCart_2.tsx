@@ -2,6 +2,7 @@
 
 import { addToCart } from "@/app/redux/features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
+import { showToast } from "@/app/utils/Toast";
 
 interface AddToCartProps {
   id: string;
@@ -28,6 +29,7 @@ export default function AddToCart_2({
   const handleAddToCart = () => {
     if (!isInCart) {
       dispatch(addToCart({ id, code, name, price, quantity, thumbnail }));
+      showToast({ message: "Product added to cart", type: "success" });
     }
   };
 

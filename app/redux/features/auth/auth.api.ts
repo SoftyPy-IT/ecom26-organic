@@ -33,7 +33,31 @@ export const authApi = baseApi.injectEndpoints({
         tags: ['auth'],
       }),
     }),
+    changePassword: builder.mutation({
+      query: (data: any) => ({
+        url: '/auth/change-password',
+        method: 'POST',
+        body: data,
+        tags: ['auth'],
+      }),
+    }),
+    getProfile: builder.query({
+      query: () => ({
+        url: '/user/profile',
+        method: 'GET',
+        tags: ['auth'],
+      }),
+    }),
+    updateProfile: builder.mutation({
+      query: (data: any) => ({
+        url: '/user/update-profile',
+        method: 'PUT',
+        body: data,
+        tags: ['auth'],
+      }),
+    }),
+
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useLogoutMutation, useVerifyEmailMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation, useLogoutMutation, useVerifyEmailMutation, useGetProfileQuery, useUpdateProfileMutation, useChangePasswordMutation } = authApi;

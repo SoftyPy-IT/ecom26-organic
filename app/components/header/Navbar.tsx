@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, Search, Menu, X } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, User, LogOut, CircleUser } from 'lucide-react';
 import { navItems } from './navitems';
 import { usePathname } from 'next/navigation';
 import SheetContainer from '../shared/modals/SheetContainer';
@@ -10,11 +10,16 @@ import Cart from '../add-to-cart/Cart';
 import SearchField from '../shared/inputs/SearchField';
 import { useAppDispatch, useAppSelector } from '@/app/redux/hooks/hook';
 import { setCartModal, setSearchModal } from '@/app/redux/features/modal/modalSlice';
+import Dropdown from '../shared/modals/Dropdown';
+import { logout } from '@/app/redux/features/auth/authSlice';
+import { selectCurrentUser } from '@/app/redux/features/auth/authSlice';
+import { showToast } from '@/app/utils/Toast';
 
 export default function Navbar() {
   const dispatch = useAppDispatch();
   const { itemsCount } = useAppSelector((state) => state.cart);
   const { isCartOpen, isSearchOpen } = useAppSelector((state) => state.modal);
+  const user = useAppSelector(selectCurrentUser)
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
@@ -38,6 +43,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const handleLogout = () => {
+    dispatch(logout())
+    showToast({
+      message: "Logout successfully",
+      type: "warning",
+      position: "bottom",
+      alignment: "right",
+    });
+    setIsOpen(false)
+  }
 
   // Determine navbar classes
   const navbarCSS = isHome
@@ -82,6 +97,31 @@ export default function Navbar() {
               </span>
             )}
           </button>
+          {user ? (
+            <>
+              <Dropdown trigger={<CircleUser size={20} />}>
+                <div className="flex flex-col gap-2">
+                  <Link href="/profile" className="hover:bg-gray-100 px-3 py-2 rounded flex items-center gap-2">
+                    <User size={20} /> Profile
+                  </Link>
+                  <Link href="/orders" className="hover:bg-gray-100 px-3 py-2 rounded flex items-center gap-2">
+                    <ShoppingCart size={20} /> My Orders
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="hover:bg-red-50 px-3 py-2 rounded text-red-600 flex items-center gap-2"
+                  >
+                    <LogOut size={20} /> Logout
+                  </button>
+                </div>
+              </Dropdown>
+            </>
+
+          ) : (
+            <Link href="/login" className="transition hover:text-green-400">
+              <User size={20} />
+            </Link>
+          )}
           <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -125,6 +165,8 @@ export default function Navbar() {
       >
         <Cart />
       </SheetContainer>
+
+
     </header>
   );
 }

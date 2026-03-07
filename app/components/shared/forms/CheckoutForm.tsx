@@ -12,6 +12,7 @@ import { FieldValues } from "react-hook-form"
 import { clearCart } from "@/app/redux/features/cart/cartSlice"
 import { showToast } from "@/app/utils/Toast"
 import { useRouter } from "next/navigation"
+import { setTimeout } from "timers"
 
 
 export default function CheckoutForm() {
@@ -67,6 +68,10 @@ export default function CheckoutForm() {
         position: "bottom",
         alignment: "right",
       });
+      setTimeout(() => {
+
+        navigate.push("/login");
+      }, 3000)
     }
   }
 
