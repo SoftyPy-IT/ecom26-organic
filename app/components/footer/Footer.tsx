@@ -41,7 +41,7 @@ export default async function Footer() {
       links: [
         { label: 'Login', href: '/login' },
         { label: 'Register', href: '/register' },
-        { label: 'Order History', href: '/order-history' },
+        { label: 'Order History', href: '/orders' },
         { label: 'Wishlist', href: '/wishlist' },
       ],
     },

@@ -13,6 +13,7 @@ import { clearCart } from "@/app/redux/features/cart/cartSlice"
 import { showToast } from "@/app/utils/Toast"
 import { useRouter } from "next/navigation"
 import { setTimeout } from "timers"
+import { selectCurrentUser } from "@/app/redux/features/auth/authSlice"
 
 
 export default function CheckoutForm() {
@@ -21,6 +22,7 @@ export default function CheckoutForm() {
   const { subTotal, totalPrice, shippingCharge, itemsCount, items } = useAppSelector(
     (state) => state.cart
   )
+  const user = useAppSelector(selectCurrentUser)
 
   const [createOrder, { isLoading }] = useCreateOrderMutation()
 
@@ -68,10 +70,13 @@ export default function CheckoutForm() {
         position: "bottom",
         alignment: "right",
       });
-      setTimeout(() => {
 
-        navigate.push("/login");
+      setTimeout(() => {
+        if (user == null) {
+          navigate.push("/login")
+        }
       }, 3000)
+
     }
   }
 
