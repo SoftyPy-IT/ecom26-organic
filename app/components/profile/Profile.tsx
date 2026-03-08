@@ -8,14 +8,15 @@ import {
   Calendar,
   Box,
   Heart,
-  ClipboardList,
-  Star,
   ShoppingCart,
 } from "lucide-react";
 import SectionHeader from "../shared/SectionHeader";
 import Loader from "../shared/Loader";
 import Link from "next/link";
-import { useAppSelector } from "@/app/redux/hooks/hook";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks/hook";
+import ModalContainer from "../shared/modals/ModalContainer";
+import UpdateProfile from "./UpdateProfile";
+import { setUpdateProfileModal } from "@/app/redux/features/modal/modalSlice";
 
 type InfoItemProps = {
   icon: React.ReactNode;
@@ -35,8 +36,10 @@ const InfoItem = ({ icon, label, value }: InfoItemProps) => (
 
 export default function Profile() {
   const { data, isLoading, } = useGetProfileQuery({});
+  const dispatch = useAppDispatch();
   const { itemsCount } = useAppSelector((state) => state.wishList);
   const { itemsCount: cartItemsCount } = useAppSelector((state) => state.cart);
+  const { updateProfileModalOpen } = useAppSelector((state) => state.modal);
   if (isLoading) return <Loader />;
 
   const {
@@ -89,12 +92,14 @@ export default function Profile() {
       </section>
 
       <div className="flex justify-center py-6">
-        <Link href="/update">
-          <button className="bg-[#81b03f] text-white px-4 py-2 hover:bg-[#81b03f]/80 transition">
-            Update Profile
-          </button>
-        </Link>
+        <button onClick={() => dispatch(setUpdateProfileModal(!updateProfileModalOpen))} className="bg-[#81b03f] text-white px-4 py-2 hover:bg-[#81b03f]/80 transition">
+          Update Profile
+        </button>
       </div>
+
+      <ModalContainer open={updateProfileModalOpen} onOpenChange={() => dispatch(setUpdateProfileModal(!updateProfileModalOpen))}>
+        <UpdateProfile firstName={firstName} lastName={lastName} />
+      </ModalContainer>
     </div>
   );
 }

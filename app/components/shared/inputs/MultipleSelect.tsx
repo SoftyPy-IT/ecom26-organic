@@ -10,7 +10,7 @@ import { forwardRef, ReactNode, SelectHTMLAttributes, useId } from "react";
 
 type Option = {
   label: ReactNode;
-  value: string;
+  value: any;
 };
 
 interface SelectProps<T extends FieldValues>

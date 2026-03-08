@@ -12,7 +12,6 @@ interface Props {
 
 export default async function page({ params, searchParams }: Props) {
   const { cat } = await params;
-  const { search, filter, sort, page, limit } = await searchParams;
   const category = await getProductsByCategory(`main=${cat}`);
   const { data: categoryData } = await getAllCategories();
   const { data: productData } = await highlightProductBySlug('69a6858120bda1bb3a8127b4');

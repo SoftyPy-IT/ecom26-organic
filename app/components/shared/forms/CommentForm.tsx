@@ -1,4 +1,5 @@
 "use client";
+import { showToast } from "@/app/utils/Toast";
 import SubmitButton from "../buttons/SubmitButton";
 import TextArea from "../inputs/TextArea";
 import TextInput from "../inputs/TextInput";
@@ -7,7 +8,13 @@ import AppForm from "./AppFrom";
 export default function CommentForm() {
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    if (data) {
+      showToast({
+        message: "Comment submitted successfully!",
+        type: "success"
+      })
+      window.location.reload();
+    }
   };
   return (
     <div>

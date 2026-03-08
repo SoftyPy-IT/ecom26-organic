@@ -1,4 +1,5 @@
 "use client"
+import { showToast } from '@/app/utils/Toast'
 import Container from '../Container'
 import SubmitButton from '../buttons/SubmitButton'
 import TextArea from '../inputs/TextArea'
@@ -8,8 +9,14 @@ import AppForm from './AppFrom'
 export default function ContactForm() {
 
   const onSubmit = (data: any) => {
-    console.log(data)
-  }
+    if (data) {
+      showToast({
+        message: "Feedback submitted successfully!",
+        type: "success"
+      })
+      window.location.reload();
+    }
+  };
   return (
     <Container className="px-2 2xl:px-0">
       <AppForm onSubmit={onSubmit}>

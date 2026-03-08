@@ -3,12 +3,12 @@ import CategoryItems from '../category/CategoryItems';
 import QueryAction from '../shared/QueryAction';
 import Container from '../shared/Container';
 import Pagination from '../shared/Pagination';
-import { TBlog } from '@/app/redux/types/TBlog';
+import { TBlog, TBlogResponse } from '@/app/redux/types/TBlog';
 import LatestBlog from './LatestBlog';
 import { getAllCategories } from '@/actions/quires/categories.api';
 
 interface BlogListProps {
-  payload: TBlog[];
+  payload: TBlogResponse;
 }
 export default async function BlogList({ payload }: BlogListProps) {
   const { data: categoryData } = await getAllCategories();
@@ -17,11 +17,11 @@ export default async function BlogList({ payload }: BlogListProps) {
       <div className="flex flex-col-reverse md:flex-row gap-4">
         <div className="w-full  md:w-3/4 flex flex-wrap gap-4">
           <QueryAction isRange={false} />
-          {payload.map((blog, idx) => (
+          {payload?.data?.map((blog: TBlog, idx: number) => (
             <BlogCard key={idx} blog={blog} />
           ))}
-          <div className="flex justify-center items-center">
-            <Pagination currentPageItemCount={1} pageLimit={10} currentPage={1} totalPages={5} />
+          <div className="w-full flex justify-center items-center">
+            <Pagination currentPageItemCount={payload?.meta?.limit} pageLimit={10} currentPage={payload?.meta?.page} totalPages={payload?.meta?.totalPage} />
           </div>
         </div>
         <div className="w-full md:w-1/4 lg:sticky top-20 h-fit space-y-6">

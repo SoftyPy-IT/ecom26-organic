@@ -23,15 +23,15 @@ export default async function page({ searchParams }: PageProps) {
   if (sort) query.set('sort', sort);
   if (range) query.set('range', range);
 
-  const { data } = await getAllBlogs(query.toString());
+  const response = await getAllBlogs(query.toString());
 
-  if (!data) {
+  if (!response) {
     return <DataNotFound />;
   }
 
   return (
     <Container className="px-2 2xl:px-0">
-      <BlogList payload={data} />
+      <BlogList payload={response} />
     </Container>
   );
 }

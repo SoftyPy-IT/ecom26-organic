@@ -5,12 +5,14 @@ interface ModalState {
   isSearchOpen: boolean
   isCartOpen: boolean
   isDropdownOpen: boolean
+  updateProfileModalOpen: boolean
 }
 
 const initialState: ModalState = {
   isSearchOpen: false,
   isCartOpen: false,
-  isDropdownOpen: false
+  isDropdownOpen: false,
+  updateProfileModalOpen: false
 }
 
 const modalSlice = createSlice({
@@ -25,10 +27,13 @@ const modalSlice = createSlice({
     },
     setDropdownModal: (state, action: PayloadAction<boolean>) => {
       state.isDropdownOpen = action.payload
+    },
+    setUpdateProfileModal: (state, action: PayloadAction<boolean>) => {
+      state.updateProfileModalOpen = action.payload
     }
   }
 })
 
-export const { setSearchModal, setCartModal, setDropdownModal } = modalSlice.actions
+export const { setSearchModal, setCartModal, setDropdownModal, setUpdateProfileModal } = modalSlice.actions
 export default modalSlice.reducer
 

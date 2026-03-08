@@ -25,7 +25,7 @@ export default function Shop({ products, categoryData, productData }: ShopProps)
   return (
     <Container className="px-2 2xl:px-0 py-8">
       <QueryAction isRange={false} />
-      <div className="flex flex-col md:flex-row gap-4 py-4 items-start md:justify-between">
+      <div className="flex  flex-col md:flex-row gap-4 py-4 items-start md:justify-between">
         {/* Sidebar */}
         <aside className="md:w-3/12 w-full lg:col-span-3 md:sticky md:top-24">
           <div className="flex items-center justify-between gap-2">

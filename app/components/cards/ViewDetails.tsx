@@ -41,6 +41,7 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
 
   const productImages = images?.length ? images : [thumbnail];
 
+  console.log(payload)
 
   return (
     <div>
@@ -95,11 +96,11 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
           <div>
             {discount_price > 0 ? (
               <div className="flex items-center gap-3">
-                <span className="text-2xl font-semibold text-primary">${discount_price}</span>
-                <span className="line-through text-gray-400">${price}</span>
+                <span className="text-2xl font-semibold text-primary">৳ {discount_price}</span>
+                <span className="line-through text-gray-400">৳ {price}</span>
               </div>
             ) : (
-              <div className="text-2xl font-semibold text-primary">${price}</div>
+                <div className="text-2xl font-semibold text-primary">৳ {price}</div>
             )}
           </div>
           <div>
@@ -121,7 +122,7 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
           </div>
         </div>
       </div>
-      <ProductReviews description={description} reviews={payload.reviews || []} />
+      <ProductReviews id={_id} description={description} reviews={payload.reviews || []} />
     </div>
   );
 }

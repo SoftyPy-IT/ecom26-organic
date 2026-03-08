@@ -59,7 +59,7 @@ export default function ProductCards_2({ payload }: ProductCardsProps) {
         {/* Price + CTA */}
         <div className="flex items-center gap-3 mt-3">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-base sm:text-lg font-bold text-slate-800">${payload?.price}</span>
+            <span className="text-base sm:text-lg font-bold text-slate-800">৳ {payload?.price}</span>
           </div>
 
           <div className="h-4 w-px bg-slate-200" />

@@ -9,8 +9,6 @@ interface Props {
 export default function BlogDetails({ blog }: Props) {
   const { title, description, content, createdAt, thumbnail } = blog;
 
-  console.log(thumbnail)
-
   return (
     <div className="space-y-6">
       {/* Title */}

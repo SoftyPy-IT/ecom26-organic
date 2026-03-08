@@ -79,7 +79,7 @@ export default function ProductCards_1({ payload }: ProductCardsProps) {
 
         {/* Price row */}
         <div className="flex items-center justify-between">
-          <span className="text-base font-bold text-slate-800">${payload?.price}</span>
+          <span className="text-base font-bold text-slate-800">৳ {payload?.price}</span>
 
         </div>
       </div>

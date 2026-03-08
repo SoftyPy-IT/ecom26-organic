@@ -37,7 +37,7 @@ export default function QueryAction({
     [router, pathname, searchParams]
   );
 
-  const rangePercent = Math.min(100, Math.max(0, range));
+  const rangePercent = (Math.min(1000, Math.max(10, range)) / 1000) * 100;
 
   return (
     <div className="w-full">
@@ -155,7 +155,7 @@ export default function QueryAction({
               <span>Price Range</span>
             </div>
             <span className="rounded-lg bg-slate-100 px-2.5 py-0.5 text-xs font-bold text-slate-700">
-              ${range.toLocaleString()}
+              ৳ {range.toLocaleString()}
             </span>
           </div>
 
@@ -169,8 +169,8 @@ export default function QueryAction({
             </div>
             <input
               type="range"
-              min={0}
-              max={100}
+              min={10}
+              max={1000}
               value={range}
               onChange={(e) => updateQuery('range', e.target.value)}
               className="
@@ -180,8 +180,8 @@ export default function QueryAction({
           </div>
 
           <div className="mt-1.5 flex justify-between text-[10px] font-medium text-slate-400">
-            <span>$0</span>
-            <span>$100</span>
+            <span>৳ 10</span>
+            <span>৳ 1000</span>
           </div>
         </div>
       )}

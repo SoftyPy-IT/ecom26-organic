@@ -9,7 +9,7 @@ interface BestSellerCardProps {
 export default function BestSellerCard({ product }: BestSellerCardProps) {
   return (
     <Link
-      href={`/shop/${product.id}`}
+      href={`/shop/${product.slug}`}
       className="flex items-center gap-6 border border-gray-200 hover:border-[#81b03f] transition-all duration-300 p-2"
     >
       {/* Image */}
@@ -26,7 +26,7 @@ export default function BestSellerCard({ product }: BestSellerCardProps) {
       <div className="flex flex-1 flex-col justify-between">
         <h3 className="text-base font-medium text-gray-800 line-clamp-2">{product.name}</h3>
 
-        <p className="mt-2 text-lg font-semibold text-primary">${product.price.toFixed(2)}</p>
+        <p className="mt-2 text-lg font-semibold text-primary">৳ {product.price.toFixed(2)}</p>
       </div>
     </Link>
   );

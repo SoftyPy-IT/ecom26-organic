@@ -1,7 +1,23 @@
 'use client'
+import { showToast } from "@/app/utils/Toast";
 import Container from "../shared/Container";
 
 export default function TopFooter() {
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+
+    if (email) {
+      showToast({
+        message: "Email Attached",
+        type: "success",
+      })
+      e.target.reset();
+    }
+  };
+
   return (
     <section>
       <Container className="py-14 px-2 2xl:px-0">
@@ -20,7 +36,7 @@ export default function TopFooter() {
           {/* Subscription Form */}
           <form
             className="w-full max-w-md flex flex-col sm:flex-row gap-3"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <label htmlFor="email" className="sr-only">
               Email address
@@ -28,10 +44,11 @@ export default function TopFooter() {
 
             <input
               id="email"
+              name="email"
               type="email"
               required
               placeholder="Enter your email address"
-              className="flex-1 px-4 py-3  border bg-white border-[#81b03f] focus:ring-2 focus:ring-[#81b03f] focus:border-[#81b03f] outline-none text-sm"
+              className="flex-1 px-4 py-3 border bg-white border-[#81b03f] focus:ring-2 focus:ring-[#81b03f] focus:border-[#81b03f] outline-none text-sm"
             />
 
             <button

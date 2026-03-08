@@ -9,9 +9,10 @@ type TabType = 'description' | 'reviews';
 interface ProductReviewsProps {
   description: string;
   reviews: IReview[];
+  id: string;
 }
 
-export default function ProductReviews({ description, reviews = [] }: ProductReviewsProps) {
+export default function ProductReviews({ description, id, reviews = [] }: ProductReviewsProps) {
   const [activeTab, setActiveTab] = useState<TabType>('description');
 
   /* ===================== Derived Values ===================== */
@@ -70,7 +71,7 @@ export default function ProductReviews({ description, reviews = [] }: ProductRev
             <div className="lg:col-span-1">
               <div className="sticky top-28 border border-gray-200 rounded-lg p-6 shadow-sm bg-white">
                 <h4 className="text-lg font-semibold mb-6">Write a Review</h4>
-                <ReviewForm />
+                <ReviewForm id={id} />
               </div>
             </div>
           </div>
