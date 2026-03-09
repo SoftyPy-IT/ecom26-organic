@@ -73,7 +73,7 @@ export default function CheckoutForm() {
 
       setTimeout(() => {
         if (user == null) {
-          navigate.push("/login")
+          navigate.push(`/login?redirect=${window.location.href}`);
         }
       }, 3000)
 

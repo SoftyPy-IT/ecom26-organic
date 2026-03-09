@@ -41,8 +41,6 @@ export default function ViewDetails({ payload }: ViewDetailsProps) {
 
   const productImages = images?.length ? images : [thumbnail];
 
-  console.log(payload)
-
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

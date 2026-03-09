@@ -8,14 +8,14 @@ interface Props {
 
 export default function CategoryCard({ category }: Props) {
   return (
-    <div className=" relative w-full h-80 aspect-square overflow-hidden group cursor-pointer">
+    <div className="relative aspect-square overflow-hidden group cursor-pointer">
       <Link href={`/categories/${category.slug}`}>
         {/* Category Image */}
         <Image
           src={category.image || '/placeholder.png'}
           alt={category.name || 'Category Image'}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-110"
+          className="object-cover w-full h-full duration-300 group-hover:scale-110"
         />
 
         {/* Overlay */}

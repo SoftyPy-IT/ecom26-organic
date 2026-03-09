@@ -9,16 +9,23 @@ import { useCreateReviewMutation } from "@/app/redux/features/review/review.api"
 import { useAppSelector } from "@/app/redux/hooks/hook";
 import { selectCurrentUser } from "@/app/redux/features/auth/authSlice";
 import { showToast } from "@/app/utils/Toast";
+import { useRouter } from "next/navigation";
 
 interface Props {
   id: string;
 }
 
 export default function ReviewForm({ id }: Props) {
+  const router = useRouter()
   const [createReview, { isLoading }] = useCreateReviewMutation()
   const userInfo = useAppSelector(selectCurrentUser)
 
+
   const onSubmit = async (values: FieldValues) => {
+    if (!userInfo?.userId) {
+      router.push(`/login?redirect=${window.location.href}`)
+      return
+    }
     const review = {
       ...values,
       product: id,

@@ -11,6 +11,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
     "@types/js-cookie": "^3.0.6",
+    "animate.css": "^4.1.1",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.564.0",

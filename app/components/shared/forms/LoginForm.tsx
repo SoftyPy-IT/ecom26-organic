@@ -12,11 +12,10 @@ import { useAppDispatch } from '@/app/redux/hooks/hook';
 import { setUser } from '@/app/redux/features/auth/authSlice';
 import Cookies from 'js-cookie';
 
-export default function LoginForm() {
+export default function LoginForm({ redirect }: { redirect?: string }) {
   const dispatch = useAppDispatch();
   const navigate = useRouter()
   const [login, { isLoading }] = useLoginMutation();
-
 
   const handleSubmit = async (values: any) => {
     try {
@@ -41,7 +40,7 @@ export default function LoginForm() {
           alignment: "right",
         });
 
-        navigate.push("/");
+        navigate.push(redirect ? redirect : "/");
       }
     } catch (error: any) {
       showToast({

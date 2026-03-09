@@ -1,5 +1,5 @@
 'use client';
-
+import 'animate.css';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -53,12 +53,17 @@ export default function Banner() {
                     100% Natural & Fresh
                   </p>
 
-                  <h1 className="mb-6 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+                  <h1 className="mb-6 animate__animated animate__fadeInUp animate__delay-0.5s text-3xl font-bold md:text-4xl lg:text-5xl">
                     {slide.title}
-                    <span className="block text-[#81b03f]">{slide.subtitle}</span>
+                    <span className="block text-[#81b03f] animate__animated animate__fadeInUp animate__delay-1s">
+                      {slide.subtitle}
+                    </span>
                   </h1>
 
-                  <p className="mb-8">{slide.description}</p>
+                  <p className="mb-8 animate__animated animate__fadeInUp animate__delay-2s">
+                    {slide.description}
+                  </p>
+
 
                   <div className="flex flex-wrap gap-4">
                     <Link

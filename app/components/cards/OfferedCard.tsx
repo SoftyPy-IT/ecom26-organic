@@ -11,9 +11,9 @@ export interface Props {
 export default function OfferedCard({ image, title, slug, price }: Props) {
   return (
     <Link href={`/shop/${slug}`}>
-      <div className="border border-gray-200 hover:shadow-lg hover:border-[#81b03f] transition duration-300 flex flex-col  w-full">
+      <div className="border border-gray-200 rounded-lg hover:shadow-[#81b03f]/60 hover:shadow-lg hover:border-[#81b03f] transition duration-300 flex flex-col  w-full">
         {/* Image Section */}
-        <div className="relative w-full h-24 flex items-center justify-center rounded-t-xl overflow-hidden">
+        <div className="relative w-full h-24 flex items-center justify-center rounded-t-lg overflow-hidden">
           <Image
             src={image || '/placeholder.png'}
             alt={title || 'product'}

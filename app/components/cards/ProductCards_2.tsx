@@ -1,19 +1,52 @@
+"use client"
+import { addToWishList } from '@/app/redux/features/wishlist/wishListSlice';
+import { useAppDispatch, useAppSelector } from '@/app/redux/hooks/hook';
 import { ShopProduct } from '@/app/redux/types/TShop';
+import { showToast } from '@/app/utils/Toast';
 import { Heart, ShoppingCart, Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useMemo } from 'react';;
 
 interface ProductCardsProps {
   payload: ShopProduct;
 }
 
 export default function ProductCards_2({ payload }: ProductCardsProps) {
+  const dispatch = useAppDispatch();
+
+  const wishlistItems = useAppSelector((state) => state.wishList.items);
+
+  const isInWishlist = useMemo(
+    () => wishlistItems.some((item) => item.id === payload._id),
+    [wishlistItems, payload._id]
+  );
+
+  const handleAdd = useCallback(() => {
+    if (isInWishlist) return;
+    showToast({ message: "Product added to wishlist", type: "success" });
+
+    dispatch(
+      addToWishList({
+        id: payload._id,
+        slug: payload.slug,
+        name: payload.name,
+        price: payload.price,
+        thumbnail: payload.thumbnail,
+        mainCategory: payload.mainCategory,
+      })
+    );
+  }, [dispatch, isInWishlist, payload]);
+
+
   return (
     <div className="group relative flex gap-4 sm:gap-6 bg-white border border-slate-100 rounded-2xl p-4 sm:p-5 shadow-sm hover:shadow-lg hover:shadow-slate-200/60 hover:border-slate-200 transition-all duration-300">
       {/* Wishlist */}
       <button
         title="Add to wishlist"
-        className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-slate-300 hover:bg-red-50 hover:text-red-500 transition-all duration-150"
+        disabled={isInWishlist}
+        onClick={handleAdd}
+        className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-slate-300 hover:bg-red-50 hover:text-red-500 disabled:text-red-500 disabled:bg-red-50 transition-all duration-150"
       >
         <Heart size={16} strokeWidth={2} />
       </button>

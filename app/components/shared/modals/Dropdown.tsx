@@ -31,18 +31,20 @@ export default function Dropdown({ trigger, children }: DropdownProps) {
   }, []);
 
   return (
-    <div className="relative inline-block" ref={ref}>
-      <div onClick={toggle} className="cursor-pointer hover:text-green-400">
-        {trigger}
-      </div>
+    <section ref={ref}>
+      <div className="relative inline-block" >
+        <div onClick={toggle} className="cursor-pointer hover:text-green-400">
+          {trigger}
+        </div>
 
-      <div
-        onClick={toggle}
-        className={`absolute right-0 mt-5 min-w-[160px] max-w-[90vw] w-max bg-white border border-gray-200 rounded-lg shadow-lg p-2 z-50 transition-transform duration-200 ease-out ${isDropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-          }`}
-      >
-        {children}
+        <div
+          onClick={toggle}
+          className={`absolute right-0 mt-5 min-w-[160px] max-w-[90vw] w-max bg-white border border-gray-200 rounded-lg shadow-lg p-2 z-50 transition-transform duration-200 ease-out ${isDropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
+            }`}
+        >
+          {children}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

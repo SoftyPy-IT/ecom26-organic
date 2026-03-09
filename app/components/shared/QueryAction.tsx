@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import { Search, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 interface QueryActionProps {
   isRange?: boolean;
@@ -20,9 +20,20 @@ export default function QueryAction({
   const pathname = usePathname();
   const [focused, setFocused] = useState<string | null>(null);
 
-  const search = searchParams.get('searchTerm') || '';
+  const initialSearch = searchParams.get('searchTerm') || '';
   const sort = searchParams.get('sort') || '';
   const range = Number(searchParams.get('range') || 0);
+
+  const [searchInput, setSearchInput] = useState(initialSearch);
+
+  // Debounce effect
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      updateQuery('searchTerm', searchInput);
+    }, 500); 
+
+    return () => clearTimeout(handler);
+  }, [searchInput]);
 
   const updateQuery = useCallback(
     (key: string, value: string | number) => {
@@ -49,25 +60,23 @@ export default function QueryAction({
             className={`
               group relative flex flex-1 items-center overflow-hidden
               rounded-xl border bg-white transition-all duration-200
-              ${
-                focused === 'search'
-                  ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
-                  : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
+              ${focused === 'search'
+                ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
+                : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
               }
             `}
           >
             <Search
               size={16}
-              className={`absolute left-3.5 shrink-0 transition-colors duration-150 ${
-                focused === 'search' ? 'text-[#81b03f]' : 'text-[81b03f]/70'
-              }`}
+              className={`absolute left-3.5 shrink-0 transition-colors duration-150 ${focused === 'search' ? 'text-[#81b03f]' : 'text-[81b03f]/70'
+                }`}
             />
             <input
               type="text"
-              value={search}
+              value={searchInput}
               onFocus={() => setFocused('search')}
               onBlur={() => setFocused(null)}
-              onChange={(e) => updateQuery('searchTerm', e.target.value)}
+              onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search products..."
               className="
                 h-11 w-full bg-transparent pl-9 pr-4 text-sm font-medium
@@ -75,9 +84,9 @@ export default function QueryAction({
                 focus:outline-none
               "
             />
-            {search && (
+            {searchInput && (
               <button
-                onClick={() => updateQuery('searchTerm', '')}
+                onClick={() => setSearchInput('')}
                 className="absolute right-3 flex h-5 w-5 items-center justify-center rounded-full bg-slate-200 text-slate-500 hover:bg-slate-300 transition-colors"
               >
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -98,18 +107,16 @@ export default function QueryAction({
           <div
             className={`
               relative shrink-0 overflow-hidden rounded-xl border bg-white transition-all duration-200
-              ${
-                focused === 'sort'
-                  ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
-                  : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
+              ${focused === 'sort'
+                ? 'border-[#81b03f] shadow-md shadow-[#81b03f]/20 ring-4 ring-[#81b03f]/10'
+                : 'border-slate-200 shadow-sm hover:border-slate-300 hover:shadow-md hover:shadow-slate-50'
               }
             `}
           >
             <ArrowUpDown
               size={15}
-              className={`pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 transition-colors duration-150 ${
-                focused === 'sort' ? 'text-[#81b03f]' : 'text-slate-400'
-              }`}
+              className={`pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 transition-colors duration-150 ${focused === 'sort' ? 'text-[#81b03f]' : 'text-slate-400'
+                }`}
             />
             <select
               value={sort}
@@ -125,7 +132,7 @@ export default function QueryAction({
               <option value="">Sort: Popular</option>
               <option value="newest">Newest first</option>
               <option value="oldest">Oldest first</option>
-              <option value="name">Name A–Z</option>
+              <option value="name">Name A-Z</option>
             </select>
             <svg
               className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
@@ -146,7 +153,7 @@ export default function QueryAction({
         )}
       </div>
 
-      {/* Range Slider — full width below */}
+      {/* Range Slider */}
       {isRange && (
         <div className="mt-3 rounded-xl border border-slate-200 bg-white px-4 py-3.5 shadow-sm">
           <div className="mb-2.5 flex items-center justify-between">
@@ -159,7 +166,6 @@ export default function QueryAction({
             </span>
           </div>
 
-          {/* Track + thumb */}
           <div className="relative flex items-center">
             <div className="relative h-1.5 w-full rounded-full bg-slate-100">
               <div
@@ -173,9 +179,7 @@ export default function QueryAction({
               max={1000}
               value={range}
               onChange={(e) => updateQuery('range', e.target.value)}
-              className="
-                absolute inset-0 h-full w-full cursor-pointer opacity-0
-              "
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             />
           </div>
 

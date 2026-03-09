@@ -10,7 +10,7 @@ export default function BestSellerCard({ product }: BestSellerCardProps) {
   return (
     <Link
       href={`/shop/${product.slug}`}
-      className="flex items-center gap-6 border border-gray-200 hover:border-[#81b03f] transition-all duration-300 p-2"
+      className="flex items-center gap-6 border rounded-lg border-gray-200 hover:border-[#81b03f] hover:shadow-[#81b03f]/60 hover:shadow-lg transition-all duration-300 p-2"
     >
       {/* Image */}
       <div className="relative h-24 w-24 shrink-0 overflow-hidden">

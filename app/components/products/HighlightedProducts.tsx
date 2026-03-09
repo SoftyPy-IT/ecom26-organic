@@ -6,6 +6,7 @@ import SeeMore from '../shared/buttons/SeeMore';
 
 export default async function HighlightedProducts() {
   const { data } = await highlightProduct();
+
   return (
     <Container className="px-2 2xl:px-0">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
