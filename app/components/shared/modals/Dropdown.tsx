@@ -32,7 +32,7 @@ export default function Dropdown({ trigger, children }: DropdownProps) {
 
   return (
     <section ref={ref}>
-      <div className="relative inline-block" >
+      <div className="relative" >
         <div onClick={toggle} className="cursor-pointer hover:text-green-400">
           {trigger}
         </div>
